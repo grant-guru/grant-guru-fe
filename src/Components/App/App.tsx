@@ -1,0 +1,17 @@
+import React from 'react';
+import logo from './logo.svg';
+import { Counter } from '../../features/counter/Counter';
+import './App.css';
+import { Route } from 'react-router-dom';
+import Form from '../Form/Form';
+
+function App() {
+  return (
+    <main className="App">
+      <Route path='/' render={() => <h1>Grant Guru</h1>} />
+      <Form/>
+    </main>
+  );
+}
+
+export default App
