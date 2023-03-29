@@ -1,14 +1,15 @@
 import React from "react";
-import './Library.css';
+import './Saved.css';
 import Header from "../Header/Header";
 
-const Library = () => {
+const Saved = () => {
     return(
         <>
             <Header />
-            <div>Library</div>
+            <div>Saved</div>
         </>
+        
     )
 }
 
-export default Library
+export default Saved

@@ -1,9 +1,14 @@
 import React from "react";
 import './Scholarship.css';
+import Header from "../Header/Header";
 
 const Scholarship = () => {
     return(
-        <div>Scholarship</div>
+        <>
+            <Header />
+                    <div>Scholarship</div>
+        </>
+
     )
 }
     
