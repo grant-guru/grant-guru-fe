@@ -13,7 +13,7 @@ const Login = () => {
                 <input type="text" name="username" id="username" />
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" id="password" />
-                <Link to={'/Form'}>
+                <Link to={'/form'}>
                     <button type="submit">Login</button>
                 </Link>
             </form>

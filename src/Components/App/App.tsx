@@ -8,8 +8,8 @@ function App() {
   return (
     <main className="App">
       <Switch>
-        <Route path="/" render={Login} />
-        <Route path="/Form" render={Form}/>
+        <Route exact path="/" render={Login} />
+        <Route path="/form" render={Form}/>
         <Route path="*" render={Login} />
       </Switch>
     </main>
