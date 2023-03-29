@@ -30,6 +30,5 @@ export const savedSlice = createSlice({
 
 });
 
-export const { setSaved, addSaved, deleteSaved } = savedSlice.actions;
-
+export const { setSaved, addSaved, deleteSaved } = savedSlice.actions
 export default savedSlice.reducer;

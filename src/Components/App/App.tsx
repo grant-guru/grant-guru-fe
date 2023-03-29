@@ -1,13 +1,21 @@
 import React from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Form from '../Form/Form';
+import Login from '../Login/Login';
+import Library from '../Library/Library';
+import Saved from '../Saved/Saved';
 
 function App() {
   return (
     <main className="App">
-      <Route path='/' render={() => <h1>Grant Guru</h1>} />
-      <Form/>
+      <Switch>
+        <Route exact path="/" render={Login} />
+        <Route path="/form" render={Form}/>
+        <Route path="/scholarships" render={Library}/>
+        <Route path="/saved" render={Saved}/>
+        <Route path="*" render={Login} />
+      </Switch>
     </main>
   );
 }
