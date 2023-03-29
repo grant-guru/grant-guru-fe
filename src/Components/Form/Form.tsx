@@ -1,9 +1,17 @@
 import React from "react";
 import './Form.css';
+import {Link} from 'react-router-dom';
 
 const Form = () => {
-    return(
-        <div>Form</div>
+    return (
+        <>
+            <form>
+                <Link to={'/scholarships'}><button>Form submit for demographics</button>
+                </Link>
+            </form>
+
+        </>
+
     )
 }
 
