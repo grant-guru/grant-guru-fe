@@ -1,13 +1,17 @@
 import React from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Form from '../Form/Form';
+import Login from '../Login/Login';
 
 function App() {
   return (
     <main className="App">
-      <Route path='/' render={() => <h1>Grant Guru</h1>} />
-      <Form/>
+      <Switch>
+        <Route path="/" render={Login} />
+        <Route path="/Form" render={Form}/>
+        <Route path="*" render={Login} />
+      </Switch>
     </main>
   );
 }
