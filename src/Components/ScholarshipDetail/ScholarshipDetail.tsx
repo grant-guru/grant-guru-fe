@@ -2,7 +2,17 @@ import React from "react";
 import './ScholarshipDetail.css';
 import Header from "../Header/Header";
 
-const ScholarshipDetail = () => {
+interface DetailProps {
+    id: string
+}
+
+const ScholarshipDetail = (props: DetailProps) => {
+
+    // use match param id to find the correct scholarship and display its info
+
+    // use the find iterator to look through global state scholarships
+    // when found, store that in a variable
+
     return(
         <>
             <Header />

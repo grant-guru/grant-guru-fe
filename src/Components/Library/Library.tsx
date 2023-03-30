@@ -73,7 +73,7 @@ const Library = () => {
         ]
     }
 
-    const cards = data.data.map(scholarship => <Scholarship {...scholarship}/>)
+    const cards = data.data.map(scholarship => <Scholarship key={scholarship.id} {...scholarship}/>)
 
     return(
         <>

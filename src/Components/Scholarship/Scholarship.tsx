@@ -1,6 +1,6 @@
 import React from "react";
 import './Scholarship.css';
-// import Header from "../Header/Header";
+import { Link } from "react-router-dom";
 
 interface CardProps {
     id: string,
@@ -27,13 +27,13 @@ const Scholarship = (props: CardProps) => {
 
     return(
         <>
-            <h2>{props.attributes.title}</h2>
-            <h3>{props.attributes.description}</h3>
-            <img src={props.attributes.image_url}/>
-            <p>{props.attributes.amount}</p>
+            <Link to={`/scholarship/${props.id}`}>
+                <h2>{props.attributes.title}</h2>
+                <h3>{props.attributes.description}</h3>
+                <p>{props.attributes.amount}</p>
+            </Link>
             <button>Save this Scholarship</button>
         </>
-
     )
 }
     

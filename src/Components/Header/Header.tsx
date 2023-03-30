@@ -8,8 +8,8 @@ const Header: React.FC = () => {
             <h1>Welcome User!</h1>
             <nav>
                   <Link to='/form'>Form</Link>
-                  <Link to='/scholarships'>Saves</Link>
-                  <Link to='/saved'>Scholarships</Link>
+                  <Link to='/saved'>Saves</Link>
+                  <Link to='/scholarships'>Scholarships</Link>
             </nav>
          </div>
     );
