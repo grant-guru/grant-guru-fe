@@ -63,18 +63,18 @@ const Form = () => {
 
     const fetchFormData = () => {
     fetch("https://college-fund-mock-data-api.herokuapp.com/scholarships")
-    .then(res => {
+        .then(res => {
         if(res.ok){
             return res.json()
         } else {
            return new Error("Trouble fetching form-filtered scholarships")
         }
-    })
-    .then(data => {
-        dispatch(setScholarships(data))
+        })
+        .then(data => {
+        dispatch(setScholarships(data.data))
         console.log(data)
-    })
-}
+        })
+    }
 
     return (
         <>
