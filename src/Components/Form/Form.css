@@ -4,7 +4,11 @@
   align-items: center;
 }
 
-input, label, select{
+.form-titles{
+  padding-left: 3vw;
+  font-size: 2.5vh;
+}
+label, .text-inputs, select{
   display: block
 }
 
@@ -13,7 +17,7 @@ input, label, select{
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
-  width: 80vw;
+  width: 75vw;
   height: 17vh;
   border: 2px solid black;
 }
@@ -31,26 +35,38 @@ input, label, select{
   width: 100vw;
 }
 .ethnicity-form {
+  padding-left: 3vw;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: flex-start;
   width: 50vw;
   height: 30vh;
-  border: 2px solid blue;
 }
-.checkbox-label{
+/* .checkbox-label{
   vertical-align: left;
   position: relative;
   bottom: 1px;
-}
+} */
 
 .military-form{
+  padding-left: 3vw;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  width: 50vw;
+  height: 25vh;
+}
+
+.residency-form{
+  padding-left: 3vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: space-evenly;
   width: 50vw;
   height: 15vh;
-
 }
 
 .button-residency-container{
@@ -59,5 +75,7 @@ input, label, select{
   justify-content: space-between;
   align-items: flex-end;
   width: 100vw;
-
+}
+.form-submit {
+  margin-right: 3vw;
 }
