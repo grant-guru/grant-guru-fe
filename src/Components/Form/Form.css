@@ -1,0 +1,63 @@
+.user-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input, label, select{
+  display: block
+}
+
+.input-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80vw;
+  height: 17vh;
+  border: 2px solid black;
+}
+
+.text-inputs, select {
+  width: 20vw;
+  height: 3vh;
+}
+
+.bottom-half{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 65vh;
+  width: 100vw;
+}
+.ethnicity-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 50vw;
+  height: 30vh;
+  border: 2px solid blue;
+}
+.checkbox-label{
+  vertical-align: left;
+  position: relative;
+  bottom: 1px;
+}
+
+.military-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 50vw;
+  height: 15vh;
+
+}
+
+.button-residency-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100vw;
+
+}
