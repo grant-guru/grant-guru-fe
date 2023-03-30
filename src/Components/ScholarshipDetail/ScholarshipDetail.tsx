@@ -1,8 +1,8 @@
 import React from "react";
-import './Scholarship.css';
+import './ScholarshipDetail.css';
 import Header from "../Header/Header";
 
-const Scholarship = () => {
+const ScholarshipDetail = () => {
     return(
         <>
             <Header />
@@ -18,4 +18,4 @@ const Scholarship = () => {
     )
 }
     
-export default Scholarship
+export default ScholarshipDetail
