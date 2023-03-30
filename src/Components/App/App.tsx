@@ -11,11 +11,11 @@ function App() {
   return (
     <main className="App">
       <Switch>
-        <Route exact path="/" render={Login} />
-        <Route path="/form" render={Form}/>
-        <Route path="/scholarships" render={Library}/>
-        <Route path="/saved" render={Saved}/>
-        <Route path="*" render={Login} />
+        <Route exact path="/" component={Login} />
+        <Route path="/form" component={Form}/>
+        <Route path="/scholarships" component={Library}/>
+        <Route path="/saved" component={Saved}/>
+        <Route path="*" component={Login} />
       </Switch>
     </main>
   );
