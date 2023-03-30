@@ -76,12 +76,6 @@ const Form = () => {
     })
 }
 
-// useEffect(() => {
-//     if(!fetching) {
-//         fetchFormData()
-//         setFetch(true)
-//     }
-// }, [fetching])
     return (
         <>
         <Header />
