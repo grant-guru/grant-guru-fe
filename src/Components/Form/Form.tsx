@@ -69,8 +69,8 @@ const Form = () => {
         } else {
            return new Error("Trouble fetching form-filtered scholarships")
         }
-        })
-        .then(data => {
+    })
+    .then(data => {
         dispatch(setScholarships(data.data))
         console.log(data)
         })
