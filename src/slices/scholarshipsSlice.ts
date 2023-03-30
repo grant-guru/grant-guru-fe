@@ -6,7 +6,7 @@ export interface ScholarshipsState {
 }
 
 const initialState: ScholarshipsState = {
-    filtered: [],
+  filtered: [],
 };
 
 export const scholarshipsSlice = createSlice({
@@ -15,6 +15,8 @@ export const scholarshipsSlice = createSlice({
   
   reducers: {
     setScholarships: (state, action: PayloadAction <any>) => {
+        //update the types here for the payload
+
       state.filtered = action.payload;
     }
   }
