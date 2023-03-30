@@ -7,6 +7,9 @@ import { setScholarships } from "../../slices/scholarshipsSlice";
 
 const Form = () => {
     const [fetching, setFetch] = useState(false)
+    const [location, setLocation] = useState("")
+    const [educationLevel, setEducation] = useState("")
+    const [gender, setGender] = useState("")
     const usStates = [
   { value: 'AL', label: 'Alabama' },
   { value: 'AK', label: 'Alaska' },
@@ -62,6 +65,7 @@ const Form = () => {
     const dispatch = useAppDispatch()
 
     const fetchFormData = () => {
+        //the following 8 lines will be refactored into a method in apiCalls.ts
     fetch("https://college-fund-mock-data-api.herokuapp.com/scholarships")
         .then(res => {
         if(res.ok){
@@ -81,11 +85,11 @@ const Form = () => {
         <Header />
             <form className="user-form">
                 <section className="input-container">
-                    <label >State
-                        <input className="text-inputs" type="text" name="" />
+                    <label htmlFor="state">State
+                        <input placeholder=" State" className="text-inputs" type="text" name="state" value={location} onChange={(e) => setLocation(e.target.value)} />
                     </label>
-                    <label >Education Level
-                        <select name="education-level" id="education-level">
+                    <label htmlFor="education-level">Education Level
+                        <select placeholder="select one ..." name="education-level" id="education-level" value={educationLevel} onChange={e => setEducation(e.target.value)}>
                             <option value="blank">select one...</option>
                             <option value="high-school">High School</option>
                             <option value="undergraduate">Undergraduate</option>
@@ -95,7 +99,7 @@ const Form = () => {
                     </label>
                     <label >
                         LGBT
-                        <select name="gender-identity" id="gender-identity">
+                        <select name="gender-identity" id="gender-identity" value={gender} onChange={(e) => setGender(e.target.value)}>
                             <option value="blank">select one...</option>
                             <option value="true">True</option>
                             <option value="false">False</option>
