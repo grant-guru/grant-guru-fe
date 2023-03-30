@@ -18,7 +18,6 @@ export const scholarshipsSlice = createSlice({
       state.filtered = action.payload;
     }
   }
-
 });
 
 export const { setScholarships } = scholarshipsSlice.actions;
