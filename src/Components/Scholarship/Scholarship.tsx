@@ -1,6 +1,8 @@
 import React from "react";
 import './Scholarship.css';
 import { Link } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { addSaved } from "../../slices/savedSlice";
 
 interface CardProps {
     id: string,
@@ -25,6 +27,17 @@ interface CardProps {
 
 const Scholarship = (props: CardProps) => {
 
+    const { saved } = useAppSelector(state => state.saved)
+
+    const dispatch = useAppDispatch()
+
+    const handleClick = () => {
+        const find = saved.find(save => save.id === props.id)
+        if (find === undefined) {
+          dispatch(addSaved(props))
+        }
+    }
+
     return(
         <>
             <Link to={`/scholarship/${props.id}`}>
@@ -32,7 +45,7 @@ const Scholarship = (props: CardProps) => {
                 <h3>{props.attributes.description}</h3>
                 <p>{props.attributes.amount}</p>
             </Link>
-            <button>Save this Scholarship</button>
+            <button onClick={() => handleClick()}>Save this Scholarship</button>
         </>
     )
 }
