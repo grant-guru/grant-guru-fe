@@ -4,25 +4,23 @@ import {Link} from 'react-router-dom';
 import Header from '../Header/Header';
 
 const Form = () => {
+
+    
     return (
         <>
         <Header />
             <form className="user-form">
                 <section className="input-container">
-                    <label >
-                        College/University
+                    <label >College/University
                         <input className="text-inputs" type="text" name="" />
                     </label>
-                    <label >
-                        State
+                    <label >State
                         <input className="text-inputs" type="text" name="" />
                     </label>
-                    <label >
-                        Keywords
+                    <label >Keywords
                         <input className="text-inputs" type="text" name="" />
                     </label>
-                    <label >
-                        Education Level
+                    <label >Education Level
                         <select name="education-level" id="education-level">
                             <option value="blank">select one...</option>
                             <option value="high-school">High School</option>
@@ -45,58 +43,48 @@ const Form = () => {
                     </label>
                 </section>
                 <section className="bottom-half">
-                        <h2>Ethnicity</h2>
+                        <h2 className="form-titles">Ethnicity</h2>
                     <section className="ethnicity-form">
                         <label className="checkbox-label">
-                            <input type="checkbox" name="checkbox-1" id="checkbox-1" /> 
-                            White
+                            <input type="checkbox" name="checkbox-1" id="checkbox-1" /> White
                         </label>
                         <label>
-                            <input type="checkbox" />
-                            Black or African American
+                            <input type="checkbox" /> Black or African American
                         </label>
                         <label>
-                            <input type="checkbox" />
-                            American Indian or Alaska Native
+                            <input type="checkbox" /> American Indian or Alaska Native
                         </label>
                         <label>
-                            <input type="checkbox" />
-                            Asian
+                            <input type="checkbox" /> Asian
                         </label>
                         <label>
-                            <input type="checkbox" />
-                            Native Hawaiin or Other Pacific Islander
+                            <input type="checkbox" /> Native Hawaiin or Other Pacific Islander
                         </label>
                     </section>
-                    <h2>Military Status:</h2>
+                    <h2 className="form-titles">Military Status:</h2>
                     <section className="military-form">
                         <p>Are you a miltary Veteran?</p>
                         <label>
-                            <input type="checkbox" />
-                            True
+                            <input type="checkbox" /> True
                         </label>
                         <label>
-                            <input type="checkbox" />
-                            False
+                            <input type="checkbox" /> False
                         </label>
                     </section>
-                    <h2>Residency Status:</h2>
+                    <h2 className="form-titles">Residency Status:</h2>
                     <section className="button-residency-container">
                         <section className="residency-form">
                             <label>
-                                <input type="checkbox" />
-                                US Citizen
+                                <input type="checkbox" /> US Citizen
                             </label>
                             <label>
-                                <input type="checkbox" />
-                                Immigrant
+                                <input type="checkbox" /> Immigrant
                             </label>
                             <label>
-                                <input type="checkbox" />
-                                Legal US Resident
+                                <input type="checkbox" /> Legal US Resident
                             </label>
                         </section>
-                        <Link to={'/scholarships'}><button>Form submit for demographics</button>
+                        <Link to={'/scholarships'}><button className="form-submit">Form submit for demographics</button>
                         </Link>
                     </section>
                 </section>
