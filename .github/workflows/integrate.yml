@@ -1,31 +1,31 @@
-name: Node Continuous Integration
+# name: Node Continuous Integration
 
-on: 
-  pull_request:
-    branches: [ main ]
+# on: 
+#   pull_request:
+#     branches: [ main ]
 
-jobs: 
-  test_pull_request: 
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-      - run: npm ci
-      - run: npm start
+# jobs: 
+#   test_pull_request: 
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: actions/setup-node@v1
+#         with:
+#           node-version: 12
+#       - run: npm ci
+#       - run: npm start
       # - run: npm run build
 
-# name: Cypress CI
-# on: [push]
-# jobs:
-#  Cypress-Test:
-#    runs-on: windows-latest
-#    steps:
-#      - name: Checkout GitCode
-#        uses: actions/checkout@v2
-#      - name: Run Cypress Test
-#        uses: cypress-io/github-action@v4
-#        with:
-#          command: npx cypress run
-#          browser: chrome
+name: Cypress CI
+on: [push]
+jobs:
+ Cypress-Test:
+   runs-on: windows-latest
+   steps:
+     - name: Checkout GitCode
+       uses: actions/checkout@v2
+     - name: Run Cypress Test
+       uses: cypress-io/github-action@v4
+       with:
+         command: npx cypress run
+         browser: chrome
