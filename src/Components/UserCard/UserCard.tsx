@@ -27,8 +27,10 @@ const UserCard = (props: UserCardProps) => {
         .then(response => response.json())
         .then(data => {
             dispatch(setUser(data))
-            console.log("this is the fetch data",data)
+            console.log("this is the fetch data",data.data)
             history.push('/form')
+            const user = data.data 
+            window.localStorage.setItem('user', JSON.stringify(user))
         })
         .catch(error => console.log(error))
     }
