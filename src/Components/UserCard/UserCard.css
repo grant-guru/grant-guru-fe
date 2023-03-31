@@ -1,0 +1,56 @@
+.user-card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .user-card-container:hover {
+    transform: scale(1.05);
+  }
+  
+  .user-card-container img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+  
+  .user-card-container h2 {
+    font-size: 1.2rem;
+    margin: 0;
+    text-align: center;
+  }
+  
+  /* Responsive Design */
+  @media screen and (min-width: 768px) {
+    .login-form-container {
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+  
+    .user-card-container {
+      width: calc(33.333% - 2rem);
+      max-width: 350px;
+    }
+  }
+  
+  @media screen and (min-width: 992px) {
+    .user-card-container {
+      width: calc(25% - 2rem);
+    }
+  }
+  
+  @media screen and (min-width: 1200px) {
+    .user-card-container {
+      width: calc(20% - 2rem);
+    }
+  }
