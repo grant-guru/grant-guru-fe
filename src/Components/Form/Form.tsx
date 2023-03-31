@@ -6,10 +6,22 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setScholarships } from "../../slices/scholarshipsSlice";
 
 const Form = () => {
-    const [fetching, setFetch] = useState(false)
-    const [location, setLocation] = useState("")
-    const [educationLevel, setEducation] = useState("")
-    const [gender, setGender] = useState("")
+    // const [ fetching, setFetch ] = useState(false)
+    const [ location, setLocation ] = useState("")
+    const [ educationLevel, setEducation ] = useState("")
+    const [ gender, setGender ] = useState("")
+    const [ veteranTrue, setVeteranTrue ] = useState(false)
+    const [ veteranFalse, setVeteranFalse ] = useState(false)
+    const [ immigrantTrue, setImmigrantTrue ] = useState(false)
+    const [ immigrantFalse, setImmigrantFalse ] = useState(false)
+    // const [ form,  setForm ] = useState({
+    //     location: "",
+    //     educationLevel: "",
+    //     gender: ""
+    // })
+ 
+const dispatch = useAppDispatch()
+
     const usStates = [
   { value: 'AL', label: 'Alabama' },
   { value: 'AK', label: 'Alaska' },
@@ -62,7 +74,25 @@ const Form = () => {
   { value: 'WI', label: 'Wisconsin' },
   { value: 'WY', label: 'Wyoming' },
 ];
-    const dispatch = useAppDispatch()
+    const handleVeteranTrue = () => {
+        setVeteranTrue(!veteranTrue)
+        setVeteranFalse(false)
+    }
+
+    const handleVeteranFalse = () => {
+        setVeteranFalse(!veteranFalse)
+        setVeteranTrue(false)
+    }
+
+    const handleImmigrantTrue = () => {
+        setImmigrantTrue(!immigrantTrue)
+        setImmigrantFalse(false)
+    }
+
+    const handleImmigrantFalse = () => {
+        setImmigrantFalse(!immigrantFalse)
+        setImmigrantTrue(false)
+    }
 
     const fetchFormData = () => {
         //the following 8 lines will be refactored into a method in apiCalls.ts
@@ -129,20 +159,21 @@ const Form = () => {
                     <section className="military-form">
                         <p>Are you a miltary Veteran?</p>
                         <label>
-                            <input type="checkbox" /> True
+                            <input type="checkbox" checked={veteranTrue} onChange={handleVeteranTrue}/> True
                         </label>
+                        <br />
                         <label>
-                            <input type="checkbox" /> False
+                            <input type="checkbox" checked={veteranFalse} onChange={handleVeteranFalse}/> False
                         </label>
                     </section>
                     <h2 className="form-titles">Immigrant Status:</h2>
                     <section className="button-residency-container">
                         <section className="residency-form">
                             <label>
-                                <input type="checkbox" /> True
+                                <input type="checkbox" checked={immigrantTrue} onChange={handleImmigrantTrue}/> True
                             </label>
                             <label>
-                                <input type="checkbox" /> False
+                                <input type="checkbox" checked={immigrantFalse} onChange={handleImmigrantFalse}/> False
                             </label>
                         </section>
                         <Link to={'/scholarships'}><button className="form-submit" onClick={() => fetchFormData()}>Form submit for demographics</button>
