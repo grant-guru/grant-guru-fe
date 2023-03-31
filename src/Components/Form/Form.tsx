@@ -74,25 +74,31 @@ const dispatch = useAppDispatch()
   { value: 'WI', label: 'Wisconsin' },
   { value: 'WY', label: 'Wyoming' },
 ];
-    const handleVeteranTrue = () => {
-        setVeteranTrue(!veteranTrue)
-        setVeteranFalse(false)
+
+
+    // const handleVeteran = (e) => {
+    //     const {name, value} = e.target
+
+    // }
+    const handleVeteranTrue = (value: any): void => {
+        setVeteranTrue(value)
+        setVeteranFalse(!value)
     }
 
-    const handleVeteranFalse = () => {
-        setVeteranFalse(!veteranFalse)
-        setVeteranTrue(false)
+    // const handleVeteranFalse = () => {
+    //     setVeteranFalse(!veteranFalse)
+    //     setVeteranTrue(false)
+    // }
+
+    const handleImmigrantTrue = (value: any): void => {
+        setImmigrantTrue(value)
+        setImmigrantFalse(!value)
     }
 
-    const handleImmigrantTrue = () => {
-        setImmigrantTrue(!immigrantTrue)
-        setImmigrantFalse(false)
-    }
-
-    const handleImmigrantFalse = () => {
-        setImmigrantFalse(!immigrantFalse)
-        setImmigrantTrue(false)
-    }
+    // const handleImmigrantFalse = () => {
+    //     setImmigrantFalse(!immigrantFalse)
+    //     setImmigrantTrue(false)
+    // }
 
     const fetchFormData = () => {
         //the following 8 lines will be refactored into a method in apiCalls.ts
@@ -128,7 +134,7 @@ const dispatch = useAppDispatch()
                         </select>
                     </label>
                     <label >
-                        LGBT
+                        LGBTQ+
                         <select name="gender-identity" id="gender-identity" value={gender} onChange={(e) => setGender(e.target.value)}>
                             <option value="blank">select one...</option>
                             <option value="true">True</option>
@@ -149,31 +155,37 @@ const dispatch = useAppDispatch()
                             <input type="checkbox" /> American Indian or Alaska Native
                         </label>
                         <label>
+                            <input type="checkbox" /> Hispanic or Latino
+                        </label>
+                        <label>
                             <input type="checkbox" /> Asian
                         </label>
                         <label>
                             <input type="checkbox" /> Native Hawaiin or Other Pacific Islander
+                        </label>
+                        <label>
+                            <input type="checkbox" /> Other
                         </label>
                     </section>
                     <h2 className="form-titles">Military Status:</h2>
                     <section className="military-form">
                         <p>Are you a miltary Veteran?</p>
                         <label>
-                            <input type="checkbox" checked={veteranTrue} onChange={handleVeteranTrue}/> True
+                            <input type="checkbox" checked={veteranTrue} onChange={() => handleVeteranTrue(true)}/> True
                         </label>
                         <br />
                         <label>
-                            <input type="checkbox" checked={veteranFalse} onChange={handleVeteranFalse}/> False
+                            <input type="checkbox" checked={veteranFalse} onChange={() => handleVeteranTrue(false)}/> False
                         </label>
                     </section>
                     <h2 className="form-titles">Immigrant Status:</h2>
                     <section className="button-residency-container">
                         <section className="residency-form">
                             <label>
-                                <input type="checkbox" checked={immigrantTrue} onChange={handleImmigrantTrue}/> True
+                                <input type="checkbox" checked={immigrantTrue} onChange={() => handleImmigrantTrue(true)}/> True
                             </label>
                             <label>
-                                <input type="checkbox" checked={immigrantFalse} onChange={handleImmigrantFalse}/> False
+                                <input type="checkbox" checked={immigrantFalse} onChange={() => handleImmigrantTrue(false)}/> False
                             </label>
                         </section>
                         <Link to={'/scholarships'}><button className="form-submit" onClick={() => fetchFormData()}>Form submit for demographics</button>
