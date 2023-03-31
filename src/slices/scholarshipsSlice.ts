@@ -1,7 +1,28 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+interface Scholarship {
+  id: string,
+  type: string,
+  attributes: {
+      title: string,
+      organization: string,
+      amount: string,
+      description: string,
+      deadline: string,
+      education: string,
+      state: string,
+      women: boolean,
+      lgbt: boolean,
+      ethnicity: Array<string>,
+      veteran: boolean,
+      immigrant: boolean,
+      url: string,
+      image_url: string
+  }
+}
+
 export interface ScholarshipsState {
-    filtered: Array<any>
+    filtered: Array<Scholarship>
 // update type any to be an interface for the object that scholarships should be
 }
 
@@ -14,7 +35,7 @@ export const scholarshipsSlice = createSlice({
   initialState,
   
   reducers: {
-    setScholarships: (state, action: PayloadAction <any>) => {
+    setScholarships: (state, action: PayloadAction<Array<Scholarship>>) => {
         //update the types here for the payload
 
       state.filtered = action.payload;

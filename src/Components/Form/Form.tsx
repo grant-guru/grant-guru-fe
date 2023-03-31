@@ -72,7 +72,7 @@ const Form = () => {
     })
     .then(data => {
         dispatch(setScholarships(data.data))
-        console.log(data)
+        console.log('data', data.data)
     })
 }
 
