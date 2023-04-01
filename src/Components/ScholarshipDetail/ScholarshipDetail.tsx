@@ -10,15 +10,15 @@ interface DetailProps {
 const ScholarshipDetail = (props: DetailProps) => {
 
 
-    const { filtered } = useAppSelector(state => state.scholarships)
+    // const { scholarships } = useAppSelector(state => state.scholarships)
 
-    const selectedScholarship = filtered.find(scholarship => scholarship.id === props.id)
+    // const selectedScholarship = scholarships.find(scholarship => scholarship.id === props.id)
 
     return(
         <>
             <Header />
             <div className='scholarshipDetail'>
-                <p>{selectedScholarship?.attributes.title}</p>
+                {/* <p>{selectedScholarship?.attributes.title}</p> */}
                 {/* <ul>All the crtierias</ul>
                 <p>$1, 000, 000.00</p>
                 <p>Lorem Ipsum something...</p>

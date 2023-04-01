@@ -14,8 +14,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route path="/form" component={Form}/>
-        <Route path="/scholarships" component={Library}/>
-        <Route path="/saved" component={Saved}/>
+        <Route path="/scholarships" render={() => <Library card='scholarships'/>}/>
+        <Route path="/saved" render={() => <Library card='saved'/>}/>
         <Route path="/scholarship/:id" render={({ match }) => <ScholarshipDetail id={match.params.id} />} />
         <Route path="*" component={Login} />
       </Switch>
