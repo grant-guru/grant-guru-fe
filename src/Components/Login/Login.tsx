@@ -1,48 +1,85 @@
-import React, { useState } from "react";
+import React from "react";
 import './Login.css';
-import { useHistory } from 'react-router-dom';
-import { useAppDispatch } from "../../app/hooks";
-import { setUser } from "../../slices/userSlice";
+import UserCard from "../UserCard/UserCard";
 
 const Login = () => {
-    const history = useHistory()
-    const dispatch = useAppDispatch()
+    const users = [{
+        "id": "1",
+        "type": "user",
+        "attributes": {
+            "first_name": "Adam",
+            "last_name": "Hughes",
+            "image_url": "https://media.licdn.com/dms/image/C5603AQHvilQI3AUEMQ/profile-displayphoto-shrink_800_800/0/1609862815851?e=1685577600&v=beta&t=HMl5xDZTacnO-E1fQSgfzhgzCJKMBc3x-pj5LaSZA-M"
+        }
+    },
+    {
+        "id": "2",
+        "type": "user",
+        "attributes": {
+            "first_name": "Drew",
+            "last_name": "Layton",
+            "image_url": "https://media.licdn.com/dms/image/D5635AQHEnwpJLXt26Q/profile-framedphoto-shrink_800_800/0/1678064386468?e=1680879600&v=beta&t=p8ZKUqplSskK5g-2phNbRo1UgXLdLMAZ0X_lmdowZfs"
+        }
+    }, {
+        "id": "3",
+        "type": "user",
+        "attributes": {
+            "first_name": "Jocelle",
+            "last_name": "Bautista",
+            "image_url": "https://media.licdn.com/dms/image/D5635AQEIHVN77x1QAw/profile-framedphoto-shrink_800_800/0/1678550742745?e=1680879600&v=beta&t=ieS0A5xEOTfyWAToumQR3iE9CmfucWFDsx1S1xCqDdo"
+        }
+    }, {
+        "id": "4",
+        "type": "user",
+        "attributes": {
+            "first_name": "Kaylah Rose",
+            "last_name": "Mitchell",
+            "image_url": "https://media.licdn.com/dms/image/D5603AQF267qmv4H5LA/profile-displayphoto-shrink_800_800/0/1675731750982?e=1685577600&v=beta&t=j9AGMADYpyBgk6ez01xqivshVOADLvPjGJBs6woSLVQ"
+        }
+    }, {
+        "id": "5",
+        "type": "user",
+        "attributes": {
+            "first_name": "Keenan",
+            "last_name": "Southall",
+            "image_url": "https://media.licdn.com/dms/image/D4E03AQHgAoRoOzOChQ/profile-displayphoto-shrink_800_800/0/1665629022125?e=1685577600&v=beta&t=UmtbW5x5VcrvtDl45ngIvA0f1B9E_hRDH1JDZgHcj3A"
+        }
+    }, {
+        "id": "6",
+        "type": "user",
+        "attributes": {
+            "first_name": "Matisse",
+            "last_name": "Mallette",
+            "image_url": "https://media.licdn.com/dms/image/C5603AQGZliXUratj0Q/profile-displayphoto-shrink_800_800/0/1663354238434?e=1685577600&v=beta&t=0Tbn6cOH3rp45302bhx2oanUXtrvC1XtDdvmEpScUpw"
+        }
+    }, {
+        "id": "7",
+        "type": "user",
+        "attributes": {
+            "first_name": "Reid",
+            "last_name": "Poole",
+            "image_url": "https://media.licdn.com/dms/image/D5635AQF3PxKiLVYhcw/profile-framedphoto-shrink_800_800/0/1679083658885?e=1680883200&v=beta&t=XpcpJSCPzhfxR-RLDg--6CCQHIv6u0BdV7ooCmOs5Jo"
+        }
+    }, {
+        "id": "8",
+        "type": "user",
+        "attributes": {
+            "first_name": "Sergio",
+            "last_name": "Azcona",
+            "image_url": "https://media.licdn.com/dms/image/C5603AQFg36SHA4Yaow/profile-displayphoto-shrink_800_800/0/1655168145023?e=1685577600&v=beta&t=7HIj5uv3UqIPvspsiIpPDIvJfr0DhNAzVezFZ6SBsTs"
+        }
+    }]
 
-    const [username, setUsername] = useState('')
-
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        console.log('clicked')
-
-        fetch('https://college-fund-mock-data-api.herokuapp.com/user')
-        .then(response => response.json())
-        .then(data => {
-            dispatch(setUser(data))
-            console.log("this is the fetch data",data)
-            console.log("this is the username",username)
-            history.push('/form')
-        })
-        .catch(error => console.log(error))
-    }
-    const handleInputChange = (e: any) => {
-        setUsername(e.target.value)
-    }
+    const UserCards = users.map((user: any) => {
+        return <UserCard key={user.id} id={user.id} type={user.type} attributes={user.attributes} />
+    })
 
     return(
-        <div className="login-form-container">
-            <h1>Login</h1>
-            <form className="login-form" onSubmit={handleSubmit}>
-                <label htmlFor="username">Username:</label>
-                <input 
-                    type="text" 
-                    name="username" 
-                    id="username" 
-                    value={username}
-                    onChange={handleInputChange}
-                />
-                <br />
-                <button type="submit">Submit</button>
-            </form >
+        <div className="login-container">
+            <h1>Choose Your Profile</h1>
+            <div className="user-cards-container">
+                {UserCards}
+            </div>
         </div>
     )
 }
