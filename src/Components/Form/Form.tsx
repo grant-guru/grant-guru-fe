@@ -116,24 +116,23 @@ const handleEthnicity = (e: any) => {
     }
 };
    
-
-    const fetchFormData = () => {
-        //the following 8 lines will be refactored into a method in apiCalls.ts
+const fetchFormData = () => {
+    //the following 8 lines will be refactored into a method in apiCalls.ts
     fetch("https://college-fund-mock-data-api.herokuapp.com/scholarships")
-        .then(res => {
+      .then(res => {
         if(res.ok){
             return res.json()
         } else {
            return new Error("Trouble fetching form-filtered scholarships")
         }
-    })
+      })
+    
     .then(data => {
         dispatch(setScholarships(data.data))
-        console.log(data)
-        })
-    }
+        console.log(data.data)
+    })
+}
 
-    
     return (
         <>
         <Header />
