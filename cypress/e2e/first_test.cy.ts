@@ -1,3 +1,6 @@
+/// <reference types="cypress" />
+
+
 describe("Login view", () => {
   beforeEach(() => {
     // Visit the login page before each test
