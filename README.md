@@ -1,5 +1,5 @@
 <div align="center">
-## Grant Guru
+# Grant Guru
 </div>
   <p align="center">
     <a href="https://github.com/grant-guru/grant-guru-fe"><strong>Explore the docs »</strong></a>
