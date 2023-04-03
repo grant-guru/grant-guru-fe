@@ -27,6 +27,22 @@ const Saved = (props: CardProps) => {
     
     const handleClick = () => {
         console.log('you clicked the delete button')
+
+        // const user = JSON.parse(localStorage.user)
+
+        // fetch(`/api/v1/users/${user.id}/scholarships/${props.id}`, {
+        //     method: 'DELETE',
+        //     headers: {
+        //       'Content-Type': 'application/json'
+        //     }
+        //   })
+        //     .then(response => {
+        //       if (!response.ok) {
+        //         throw new Error('Something went wrong')
+        //       } 
+        //       // maybe do somehing else here?
+        //     })
+        //     .catch(err => console.log(err))
     }
 
     return(
