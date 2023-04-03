@@ -102,7 +102,7 @@ I hope you have fun using Grant Guru!
 [//]: <> (Who worked on this application? Link to their GitHubs.)
 
 <div>
-  <img src="https://img.shields.io/badge/Reid%20Poole-Front--End-orange" height="30" width="100">
+  <img src="https://img.shields.io/badge/Reid%20Poole-Front--End-orange" height="40" width="150">
   <p><strong>Connect with:</strong></p>
   <a href="https://www.linkedin.com/in/reid-poole/"> 
     <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/>
@@ -116,7 +116,7 @@ I hope you have fun using Grant Guru!
 </div>
 </br>
 <div>
-  <img src="https://img.shields.io/badge/Kennan%20Southall-Front--End-blue" height="30" width="100">
+  <img src="https://img.shields.io/badge/Kennan%20Southall-Front--End-blue" height="40" width="150">
   <p><strong>Connect with:</strong></p>
   <a href="https://www.linkedin.com/in/keenan-southall/"> 
     <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/>
@@ -130,7 +130,7 @@ I hope you have fun using Grant Guru!
 </div>
 </br>
 <div>
-  <img src="https://img.shields.io/badge/Adam%20Hughes-Front--End-red" height="30" width="100">
+  <img src="https://img.shields.io/badge/Adam%20Hughes-Front--End-red" height="40" width="150">
   <p><strong>Connect with:</strong></p>
   <a href="https://www.linkedin.com/in/front-end-adam/"> 
     <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/>
@@ -144,7 +144,7 @@ I hope you have fun using Grant Guru!
 </div>
 </br>
 <div>
-  <img src="https://img.shields.io/badge/Jocelle%20Bautista-Front--End-purple" height="30" width="100">
+  <img src="https://img.shields.io/badge/Jocelle%20Bautista-Front--End-purple" height="40" width="150">
   <p><strong>Connect with:</strong></p>
   <a href="https://www.linkedin.com/in/jocelle-bautista/"> 
     <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/>
