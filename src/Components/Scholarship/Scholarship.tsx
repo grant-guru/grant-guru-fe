@@ -33,7 +33,7 @@ const Scholarship = (props: CardProps) => {
 
     const handleClick = () => {
 
-        //const user = JSON.parse(localStorage.user)
+        // const user = JSON.parse(localStorage.user)
 
         // fetch(`/api/v1/users/${user.id}/scholarships/${props.id}`, {
         //     method: 'POST',
@@ -45,10 +45,10 @@ const Scholarship = (props: CardProps) => {
         //     // .then(json => console.log(json))
         //     .catch(err => console.log(err));
 
-        const find = saved.find(save => save.id === props.id)
-        if (find === undefined) {
-          dispatch(addSaved(props))
-        }
+        // const find = saved.find(save => save.id === props.id)
+        // if (find === undefined) {
+        //   dispatch(addSaved(props))
+        // }
     }
 
     return(
