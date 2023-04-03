@@ -129,7 +129,8 @@ const fetchFormData = () => {
     
     .then(data => {
         dispatch(setScholarships(data.data))
-        console.log(data.data)
+        let scholarships = (data.data)
+        window.localStorage.setItem('scholarships', JSON.stringify(scholarships))
     })
 }
 
@@ -195,7 +196,7 @@ const fetchFormData = () => {
                         <label>
                             <input type="checkbox" checked={veteranTrue} name="veteranTrue" onChange={(e) => handleVeteran(e)}/> True
                         </label>
-                        <br />
+                        <br/>
                         <label>
                             <input type="checkbox" checked={veteranFalse} name="veteranFalse" onChange={(e) => handleVeteran(e)}/> False
                         </label>
@@ -206,6 +207,8 @@ const fetchFormData = () => {
                             <label>
                                 <input type="checkbox" checked={immigrantTrue} name="immigrantTrue" onChange={(e) => handleImmigrant(e)}/> True
                             </label>
+                            <br/>
+
                             <label>
                                 <input type="checkbox" checked={immigrantFalse} name="immigrantFalse" onChange={(e) => handleImmigrant(e)}/> False
                             </label>
