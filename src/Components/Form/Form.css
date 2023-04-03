@@ -1,4 +1,4 @@
-.user-form {
+/* .user-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,11 +43,7 @@ label, .text-inputs, select{
   width: 50vw;
   height: 30vh;
 }
-/* .checkbox-label{
-  vertical-align: left;
-  position: relative;
-  bottom: 1px;
-} */
+
 
 .military-form{
   padding-left: 3vw;
@@ -78,4 +74,129 @@ label, .text-inputs, select{
 }
 .form-submit {
   margin-right: 3vw;
+} */
+
+/* .checkbox-label{
+  vertical-align: left;
+  position: relative;
+  bottom: 1px;
+} */
+
+/* Form.css */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.user-form {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.input-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.input-container label {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 calc(33% - 20px);
+  margin-bottom: 20px;
+}
+
+.input-container select {
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.form-titles {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.bottom-half {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+
+.bottom-half > section {
+  margin-bottom: 30px;
+}
+
+.bottom-half label {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.bottom-half input[type='checkbox'] {
+  margin-right: 5px;
+}
+
+.ethnicity-form label {
+  flex: 0 0 calc(33% - 10px);
+  hyphens: auto;
+  width: calc(33% - 10px);
+}
+
+.ethnicity-form label {
+  flex: 0 0 calc(33% - 10px);
+}
+
+.form-submit {
+  background-color: #007bff;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.form-submit:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive styles */
+
+@media screen and (max-width: 768px) {
+  .input-container label {
+      flex-basis: calc(50% - 20px);
+  }
+
+  .bottom-half label {
+      flex-basis: calc(50% - 20px);
+  }
+
+  .ethnicity-form label {
+    flex-basis: calc(50% - 10px);
+    width: calc(50% - 10px);
+}
+}
+
+@media screen and (max-width: 480px) {
+  .input-container label {
+      flex-basis: 100%;
+  }
+
+  .bottom-half label {
+      flex-basis: 100%;
+  }
+
+  .ethnicity-form label {
+    flex-basis: 100%;
+    width: 100%;
+}
 }
