@@ -10,16 +10,33 @@ interface LibraryProps {
     card: string
 }
 
-// this cannot use state. i think it should call from the database instead. 
-// because when the page is refreshed, state is lost
-// i dont think this would happen if we were mapping over a database endpoint instead
+interface Scholarship {
+    id: string,
+    type: string,
+    attributes: {
+        title: string,
+        organization: string,
+        amount: string,
+        description: string,
+        deadline: string,
+        education: string,
+        state: string,
+        women: boolean,
+        lgbt: boolean,
+        ethnicity: Array<string>,
+        veteran: boolean,
+        immigrant: boolean,
+        url: string,
+        image_url: string
+    }
+}
 
 const Library = (props: LibraryProps) => {
 
-    const { filtered } = useAppSelector(state => state.scholarships)
+    const scholarships: Array<Scholarship> = JSON.parse(localStorage.scholarships)
     const { saved } = useAppSelector(state => state.saved)
     
-    const scholarshipCards = filtered.map(scholarship => <Scholarship key={scholarship.id} {...scholarship} type={props.card}/>)
+    const scholarshipCards = scholarships.map(scholarship => <Scholarship key={scholarship.id} {...scholarship} type={props.card}/>)
     const savedCards = saved.map(scholarship => <Saved key={scholarship.id} {...scholarship} type={props.card}/>)
     
     return(
