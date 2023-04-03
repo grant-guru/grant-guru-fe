@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import './Form.css';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setScholarships } from "../../slices/scholarshipsSlice";
