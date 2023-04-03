@@ -15,14 +15,14 @@ const Form = () => {
     const [ immigrantTrue, setImmigrantTrue ] = useState(false)
     const [ immigrantFalse, setImmigrantFalse ] = useState(false)
     const [ ethnicity, setEthnicity ] = useState <Array<string>>([])
-    const [ form,  setForm ] = useState<any>({
-                        location: "",
-                        educationLevel: "",
-                        gender: "",
-                        veteranStatus: false,
-                        immigrantTrue: false,
-                        ethnicity: []
-                    })
+    // const [ form,  setForm ] = useState<any>({
+    //                     location: "",
+    //                     educationLevel: "",
+    //                     gender: "",
+    //                     veteranStatus: false,
+    //                     immigrantTrue: false,
+    //                     ethnicity: []
+    //                 })
  
 const dispatch = useAppDispatch()
 
