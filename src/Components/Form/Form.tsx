@@ -92,8 +92,6 @@ const Form = () => {
     
         return url;
     };
-    
-
 
     const fetchFormData = () => {
         //the following 8 lines will be refactored into a method in apiCalls.ts
