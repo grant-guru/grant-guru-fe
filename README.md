@@ -138,7 +138,7 @@ I hope you have fun using Grant Guru!
   <a href="https://github.com/ajh0050">
     <img src="https://img.shields.io/badge/-github-black?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Badge">
   </a>
-  <a href="mailto: adam@adamhughes.us">
+  <a href="mailto: adamjordanhughes@gmail.com">
     <img src="https://img.shields.io/badge/-gmail-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail Badge">
   </a>
 </div>
