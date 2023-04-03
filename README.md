@@ -1,4 +1,4 @@
-
+## Grant Guru
   <p align="center">
     <a href="https://github.com/grant-guru/grant-guru-fe"><strong>Explore the docs »</strong></a>
     <br />
