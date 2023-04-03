@@ -113,7 +113,8 @@ I hope you have fun using Grant Guru!
   <a href="mailto: poole.reid@gmail.com">
     <img src="https://img.shields.io/badge/-gmail-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail Badge">
   </a>
----
+</div>
+</br>
 <div>
   <img src="https://img.shields.io/badge/Kennan%20Southall-Front--End-blue" height="30" width="100">
   <p><strong>Connect with:</strong></p>
@@ -126,7 +127,8 @@ I hope you have fun using Grant Guru!
   <a href="mailto: keenansouthall67@gmail.com">
     <img src="https://img.shields.io/badge/-gmail-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail Badge">
   </a>
----
+</div>
+</br>
 <div>
   <img src="https://img.shields.io/badge/Adam%20Hughes-Front--End-red" height="30" width="100">
   <p><strong>Connect with:</strong></p>
@@ -139,8 +141,8 @@ I hope you have fun using Grant Guru!
   <a href="mailto: adam@adamhughes.us">
     <img src="https://img.shields.io/badge/-gmail-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail Badge">
   </a>
----
-
+</div>
+</br>
 <div>
   <img src="https://img.shields.io/badge/Jocelle%20Bautista-Front--End-purple" height="30" width="100">
   <p><strong>Connect with:</strong></p>
@@ -153,4 +155,4 @@ I hope you have fun using Grant Guru!
   <a href="mailto: jocellebautista@gmail.com">
     <img src="https://img.shields.io/badge/-gmail-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail Badge">
   </a>
----
+</div>
