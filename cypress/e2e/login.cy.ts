@@ -31,7 +31,7 @@ describe("Login view", () => {
       fixture: "user.json",
     });
 
-    cy.get(".user-cards-container").first().click();
+    cy.get(".user-card-container").first().click();
     cy.location("pathname").should("eq", "/form");
   });
 });
