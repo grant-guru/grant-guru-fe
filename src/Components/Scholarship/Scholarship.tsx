@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './Scholarship.css';
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
@@ -26,28 +26,34 @@ interface CardProps {
 }
 
 const Scholarship = (props: CardProps) => {
+    const [clickedToSave, setClickedToSave] = useState(false)
 
     const { saved } = useAppSelector(state => state.saved)
 
     const dispatch = useAppDispatch()
 
-    const handleClick = () => {
+    const handleAdd = () => {
         const find = saved.find(save => save.id === props.id)
         if (find === undefined) {
-          dispatch(addSaved(props))
+            dispatch(addSaved(props))
         }
     }
+    const handleDelete = () => {
+        console.log('you clicked the delete button')
+    }
 
-    return(
-        <>
-            <Link to={`/scholarship/${props.id}`}>
-                <h2>{props.attributes.title}</h2>
-                <h3>{props.attributes.description}</h3>
-                <p>{props.attributes.amount}</p>
-            </Link>
-            <button onClick={() => handleClick()}>Save this Scholarship</button>
-        </>
-    )
+return (
+    <div className="Scholarship">
+      <div className="card-image">
+        <img src={props.attributes.image_url} alt={props.attributes.title} />
+      </div>
+      <Link to={`/scholarship/${props.id}`}>
+        <h2>{props.attributes.title}</h2>
+        <p>Award Amount: ${parseFloat(props.attributes.amount).toLocaleString("en-US")}</p>
+      </Link>
+      {clickedToSave ? <button onClick={() => handleDelete()}>Remove from Saved</button> : <button onClick={() => handleAdd()}>Save this Scholarship</button>}
+    </div>
+  )
 }
-    
+
 export default Scholarship

@@ -25,7 +25,9 @@ const Library = (props: LibraryProps) => {
     return(
         <>
             <Header />
-            {props.card === 'scholarships' ? scholarshipCards : savedCards}
+            <div className="Library">
+                {props.card === 'scholarships' ? scholarshipCards : savedCards}
+            </div>
         </>
     )
 }
