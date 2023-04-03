@@ -23,7 +23,8 @@ const UserCard = (props: UserCardProps) => {
         console.log('clicked')
         console.log('userID: e.t.id', e.target.id)
         const userID = e.target.id
-        fetch('https://college-fund-mock-data-api.herokuapp.com/user')
+        const url = `https://college-fund-mock-data-api.herokuapp.com/user`
+        fetch(url)
         .then(response => response.json())
         .then(data => {
             dispatch(setUser(data))
