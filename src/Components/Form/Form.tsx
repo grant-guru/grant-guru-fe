@@ -33,6 +33,7 @@ const Form = () => {
         "Native Hawaiian or Other Pacific Islander",
         "Other",
     ];
+
     const handleEthnicityCheckboxChange = (e: any) => {
         const name = e.target.name;
         const checked = e.target.checked;
@@ -64,7 +65,16 @@ const Form = () => {
         ));
     };
 
-
+    const resetForm = () => {
+        setForm({
+            location: "",
+            educationLevel: "",
+            gender: "",
+            veteranStatus: null,
+            immigrantStatus: null,
+            ethnicity: []
+        });
+    };
 
     const fetchFormData = () => {
         //the following 8 lines will be refactored into a method in apiCalls.ts
@@ -81,6 +91,7 @@ const Form = () => {
                 dispatch(setScholarships(data.data))
                 let scholarships = (data.data)
                 window.localStorage.setItem('scholarships', JSON.stringify(scholarships))
+                resetForm()
             })
     }
 
