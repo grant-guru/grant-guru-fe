@@ -18,8 +18,21 @@ const UserCard = (props: UserCardProps) => {
     const dispatch = useAppDispatch()
     const history = useHistory()
 
+    const createUrlWithQueryParams = (e: any) => {
+        const baseUrl = "https://college-fund-mock-data-api.herokuapp.com/user";
+        const url = new URL(baseUrl);
+        const queryParams = new URLSearchParams();
+    
+        queryParams.append("userid", e.target.id);
+    
+        url.search = queryParams.toString();
+    
+        return url;
+    };
+
     const handleClick = (e: any) => {
         e.preventDefault();
+        console.log("user query url",createUrlWithQueryParams(e).toString())
         console.log('clicked')
         console.log('userID: e.t.id', e.target.id)
         const userID = e.target.id
