@@ -26,8 +26,6 @@ interface CardProps {
 }
 
 const Scholarship = (props: CardProps) => {
-    const [clickedToSave, setClickedToSave] = useState(false)
-
     const { saved } = useAppSelector(state => state.saved)
 
     const dispatch = useAppDispatch()
@@ -42,18 +40,18 @@ const Scholarship = (props: CardProps) => {
         console.log('you clicked the delete button')
     }
 
-return (
-    <div className="Scholarship">
-      <div className="card-image">
-        <img src={props.attributes.image_url} alt={props.attributes.title} />
-      </div>
-      <Link to={`/scholarship/${props.id}`}>
-        <h2>{props.attributes.title}</h2>
-        <p>Award Amount: ${parseFloat(props.attributes.amount).toLocaleString("en-US")}</p>
-      </Link>
-      {clickedToSave ? <button onClick={() => handleDelete()}>Remove from Saved</button> : <button onClick={() => handleAdd()}>Save this Scholarship</button>}
-    </div>
-  )
+    return (
+        <div className="Scholarship">
+            <div className="card-image">
+                <img src={props.attributes.image_url} alt={props.attributes.title} />
+            </div>
+            <Link to={`/scholarship/${props.id}`}>
+                <h2>{props.attributes.title}</h2>
+                <p>Award Amount: ${parseFloat(props.attributes.amount).toLocaleString("en-US")}</p>
+            </Link>
+            <button onClick={() => handleAdd()}>Save this Scholarship</button>
+        </div>
+    )
 }
 
 export default Scholarship
