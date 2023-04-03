@@ -1,25 +1,48 @@
 .login-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 2rem;
-    box-sizing: border-box;
-  }
-  
-  .login-container h1 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.login-container h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
 
 .user-cards-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 2rem;
-    box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 600px) {
+  .user-cards-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 900px) {
+  .user-cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 901px) and (max-width: 1200px) {
+  .user-cards-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  .user-cards-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }

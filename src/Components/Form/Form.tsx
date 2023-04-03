@@ -1,154 +1,145 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import './Form.css';
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch } from "../../app/hooks";
 import { setScholarships } from "../../slices/scholarshipsSlice";
+import usStates from "../../data/usStates";
 
 const Form = () => {
-    // const [ fetching, setFetch ] = useState(false)
-    const [ location, setLocation ] = useState<string>("")
-    const [ educationLevel, setEducation ] = useState<string>("")
-    const [ gender, setGender ] = useState<string>("")
-    const [ veteranTrue, setVeteranTrue ] = useState(false)
-    const [ veteranFalse, setVeteranFalse ] = useState(false)
-    const [ immigrantTrue, setImmigrantTrue ] = useState(false)
-    const [ immigrantFalse, setImmigrantFalse ] = useState(false)
-    const [ ethnicity, setEthnicity ] = useState <Array<string>>([])
-    const [ form,  setForm ] = useState<any>({
-                        location: "",
-                        educationLevel: "",
-                        gender: "",
-                        veteranStatus: false,
-                        immigrantTrue: false,
-                        ethnicity: []
-                    })
- 
-const dispatch = useAppDispatch()
 
-    const usStates = [
-  { value: 'AL', label: 'Alabama' },
-  { value: 'AK', label: 'Alaska' },
-  { value: 'AZ', label: 'Arizona' },
-  { value: 'AR', label: 'Arkansas' },
-  { value: 'CA', label: 'California' },
-  { value: 'CO', label: 'Colorado' },
-  { value: 'CT', label: 'Connecticut' },
-  { value: 'DE', label: 'Delaware' },
-  { value: 'FL', label: 'Florida' },
-  { value: 'GA', label: 'Georgia' },
-  { value: 'HI', label: 'Hawaii' },
-  { value: 'ID', label: 'Idaho' },
-  { value: 'IL', label: 'Illinois' },
-  { value: 'IN', label: 'Indiana' },
-  { value: 'IA', label: 'Iowa' },
-  { value: 'KS', label: 'Kansas' },
-  { value: 'KY', label: 'Kentucky' },
-  { value: 'LA', label: 'Louisiana' },
-  { value: 'ME', label: 'Maine' },
-  { value: 'MD', label: 'Maryland' },
-  { value: 'MA', label: 'Massachusetts' },
-  { value: 'MI', label: 'Michigan' },
-  { value: 'MN', label: 'Minnesota' },
-  { value: 'MS', label: 'Mississippi' },
-  { value: 'MO', label: 'Missouri' },
-  { value: 'MT', label: 'Montana' },
-  { value: 'NE', label: 'Nebraska' },
-  { value: 'NV', label: 'Nevada' },
-  { value: 'NH', label: 'New Hampshire' },
-  { value: 'NJ', label: 'New Jersey' },
-  { value: 'NM', label: 'New Mexico' },
-  { value: 'NY', label: 'New York' },
-  { value: 'NC', label: 'North Carolina' },
-  { value: 'ND', label: 'North Dakota' },
-  { value: 'OH', label: 'Ohio' },
-  { value: 'OK', label: 'Oklahoma' },
-  { value: 'OR', label: 'Oregon' },
-  { value: 'PA', label: 'Pennsylvania' },
-  { value: 'RI', label: 'Rhode Island' },
-  { value: 'SC', label: 'South Carolina' },
-  { value: 'SD', label: 'South Dakota' },
-  { value: 'TN', label: 'Tennessee' },
-  { value: 'TX', label: 'Texas' },
-  { value: 'UT', label: 'Utah' },
-  { value: 'VT', label: 'Vermont' },
-  { value: 'VA', label: 'Virginia' },
-  { value: 'WA', label: 'Washington' },
-  { value: 'WV', label: 'West Virginia' },
-  { value: 'WI', label: 'Wisconsin' },
-  { value: 'WY', label: 'Wyoming' },
-];
-
-    const handleVeteran = (e: any) => {
-        const name = e.target.name;
-        const checked = e.target.checked;
-        if(name === "veteranTrue" ){
-            setVeteranTrue(!veteranTrue)
-            setVeteranFalse(false)
-
-        } else if(name === "veteranFalse" && checked){
-            setVeteranFalse(!veteranFalse)
-            setVeteranTrue(false)
-        }
-    }
-
-    const handleImmigrant= (e: any) => {
-        const name = e.target.name;
-        const checked = e.target.checked;
-
-        if(name === "immigrantTrue"){
-            setImmigrantTrue(!immigrantTrue)
-            setImmigrantFalse(false)
-        } else if(name === "immigrantFalse"){
-            setImmigrantFalse(!immigrantFalse)
-            setImmigrantTrue(false)
-        }
-    }
-
-const handleEthnicity = (e: any) => {
-    const name = e.target.name;
-    const checked = e.target.checked;
-
-    if (checked && !ethnicity.includes(name)) {
-        setEthnicity([...ethnicity, name]);
-    } else if (!checked && ethnicity.includes(name)) {
-        setEthnicity(ethnicity.filter((item) => item !== name));
-    }
-};
-   
-const fetchFormData = () => {
-    //the following 8 lines will be refactored into a method in apiCalls.ts
-    fetch("https://college-fund-mock-data-api.herokuapp.com/scholarships")
-      .then(res => {
-        if(res.ok){
-            return res.json()
-        } else {
-           return new Error("Trouble fetching form-filtered scholarships")
-        }
-      })
-    
-    .then(data => {
-        dispatch(setScholarships(data.data))
-        let scholarships = (data.data)
-        window.localStorage.setItem('scholarships', JSON.stringify(scholarships))
+    const [form, setForm] = useState<any>({
+        location: "",
+        educationLevel: "",
+        gender: "",
+        veteranStatus: null,
+        immigrantStatus: null,
+        ethnicity: []
     })
-}
+
+    const dispatch = useAppDispatch()
+
+    const handleSelectChange = (e: any, selectType: any) => {
+        const value = e.target.value;
+        setForm({ ...form, [selectType]: value });
+    };
+
+    const ethnicities = [
+        "White",
+        "Black or African American",
+        "American Indian or Alaska Native",
+        "Hispanic or Latino",
+        "Asian",
+        "Native Hawaiian or Other Pacific Islander",
+        "Other",
+    ];
+
+    const handleEthnicityCheckboxChange = (e: any) => {
+        const name = e.target.name;
+        const checked = e.target.checked;
+
+        if (checked && !form.ethnicity.includes(name)) {
+            setForm({
+                ...form,
+                ethnicity: [...form.ethnicity, name],
+            });
+        } else if (!checked && form.ethnicity.includes(name)) {
+            setForm({
+                ...form,
+                ethnicity: form.ethnicity.filter((item: string) => item !== name),
+            });
+        }
+    };
+
+    const renderEthnicityCheckboxes = () => {
+        return ethnicities.map((ethnicity) => (
+            <label key={ethnicity}>
+                <input
+                    type="checkbox"
+                    name={ethnicity}
+                    checked={form.ethnicity.includes(ethnicity)}
+                    onChange={handleEthnicityCheckboxChange}
+                />
+                {ethnicity}
+            </label>
+        ));
+    };
+
+    const resetForm = () => {
+        setForm({
+            location: "",
+            educationLevel: "",
+            gender: "",
+            veteranStatus: null,
+            immigrantStatus: null,
+            ethnicity: []
+        });
+    };
+
+    const createUrlWithQueryParams = () => {
+        const baseUrl = "https://college-fund-mock-data-api.herokuapp.com/scholarships";
+        const url = new URL(baseUrl);
+        const queryParams = new URLSearchParams();
+    
+        if (form.location) queryParams.append("location", form.location);
+        if (form.educationLevel) queryParams.append("educationLevel", form.educationLevel);
+        if (form.gender) queryParams.append("gender", form.gender);
+        if (form.veteranStatus !== null) queryParams.append("veteranStatus", form.veteranStatus);
+        if (form.immigrantStatus !== null) queryParams.append("immigrantStatus", form.immigrantStatus);
+        if (form.ethnicity.length > 0) queryParams.append("ethnicity", form.ethnicity.join(','));
+    
+        url.search = queryParams.toString();
+    
+        return url;
+    };
+    
+
+
+    const fetchFormData = () => {
+        //the following 8 lines will be refactored into a method in apiCalls.ts
+        fetch("https://college-fund-mock-data-api.herokuapp.com/scholarships")
+            .then(res => {
+                if (res.ok) {
+                    return res.json()
+                } else {
+                    return new Error("Trouble fetching form-filtered scholarships")
+                }
+            })
+
+            .then(data => {
+                dispatch(setScholarships(data.data))
+                let scholarships = (data.data)
+                window.localStorage.setItem('scholarships', JSON.stringify(scholarships))
+                console.log("here is the query params url",createUrlWithQueryParams().toString())
+                resetForm()
+            })
+    }
 
     return (
         <>
-        <Header />
+            <Header />
             <form className="user-form">
                 <section className="input-container">
                     <label htmlFor="state-selector">State
-                        <select placeholder="select one ..." name="usStates" id="state-selector" value={location} onChange={(e) => setLocation(e.target.value)}>
+                        <select
+                            name="usStates"
+                            id="state-selector"
+                            value={form.location}
+                            onChange={(e) => handleSelectChange(e, "location")}
+                        >
                             <option>select one ...</option>
-                            {usStates.map(({value, label}) => (
+                            {usStates.map(({ value, label }) => (
                                 <option key={label} value={value}>{value}</option>
                             ))}
                         </select>
                     </label>
                     <label htmlFor="education-level">Education Level
-                        <select placeholder="select one ..." name="education-level" id="education-level" value={educationLevel} onChange={e => setEducation(e.target.value)}>
+                        <select
+                            name="education-level"
+                            id="education-level"
+                            value={form.educationLevel}
+                            onChange={(e) => handleSelectChange(e, "educationLevel")}
+                        >
                             <option value="blank">select one...</option>
                             <option value="high-school">High School</option>
                             <option value="undergraduate">Undergraduate</option>
@@ -156,9 +147,14 @@ const fetchFormData = () => {
                             <option value="Trade-Technical">Trade/Technical</option>
                         </select>
                     </label>
-                    <label >
+                    <label>
                         LGBTQ+
-                        <select name="gender-identity" id="gender-identity" value={gender} onChange={(e) => setGender(e.target.value)}>
+                        <select
+                            name="gender-identity"
+                            id="gender-identity"
+                            value={form.gender}
+                            onChange={(e) => handleSelectChange(e, "gender")}
+                        >
                             <option value="blank">select one...</option>
                             <option value="true">True</option>
                             <option value="false">False</option>
@@ -166,62 +162,63 @@ const fetchFormData = () => {
                     </label>
                 </section>
                 <section className="bottom-half">
-                        <h2 className="form-titles">Ethnicity</h2>
+                    <h2 className="form-titles">Ethnicity</h2>
                     <section className="ethnicity-form">
-                        <label className="checkbox-label">
-                            <input type="checkbox" name="White" id="checkbox-1" onChange={(e) => handleEthnicity(e)} /> White
-                        </label>
-                        <label>
-                            <input type="checkbox" name="Black or African American" onChange={(e) => handleEthnicity(e)} /> Black or African American
-                        </label>
-                        <label>
-                            <input type="checkbox" name="American Indian or Alaska Native" onChange={(e) => handleEthnicity(e)} /> American Indian or Alaska Native
-                        </label>
-                        <label>
-                            <input type="checkbox" name="Hispanic or Latino" onChange={(e) => handleEthnicity(e)} /> Hispanic or Latino
-                        </label>
-                        <label>
-                            <input type="checkbox" name="Asian" onChange={(e) => handleEthnicity(e)} /> Asian
-                        </label>
-                        <label>
-                            <input type="checkbox" name="Native Hawaiian or Other Pacific Islander" onChange={(e) => handleEthnicity(e)} /> Native Hawaiian or Other Pacific Islander
-                        </label>
-                        <label>
-                            <input type="checkbox" name="Other" onChange={(e) => handleEthnicity(e)} /> Other
-                        </label>
+                        {renderEthnicityCheckboxes()}
                     </section>
                     <h2 className="form-titles">Military Status:</h2>
                     <section className="military-form">
-                        <p>Are you a miltary Veteran?</p>
+                        <p>Are you a military Veteran?</p>
                         <label>
-                            <input type="checkbox" checked={veteranTrue} name="veteranTrue" onChange={(e) => handleVeteran(e)}/> True
+                            <input
+                                type="radio"
+                                name="veteranStatus"
+                                value="true"
+                                checked={form.veteranStatus === true}
+                                onChange={() => setForm({ ...form, veteranStatus: true })}
+                            /> True
                         </label>
-                        <br/>
+                        <br />
                         <label>
-                            <input type="checkbox" checked={veteranFalse} name="veteranFalse" onChange={(e) => handleVeteran(e)}/> False
+                            <input
+                                type="radio"
+                                name="veteranStatus"
+                                value="false"
+                                checked={form.veteranStatus === false}
+                                onChange={() => setForm({ ...form, veteranStatus: false })}
+                            /> False
                         </label>
                     </section>
                     <h2 className="form-titles">Immigrant Status:</h2>
                     <section className="button-residency-container">
                         <section className="residency-form">
                             <label>
-                                <input type="checkbox" checked={immigrantTrue} name="immigrantTrue" onChange={(e) => handleImmigrant(e)}/> True
+                                <input
+                                    type="radio"
+                                    name="immigrantStatus"
+                                    value="true"
+                                    checked={form.immigrantStatus === true}
+                                    onChange={() => setForm({ ...form, immigrantStatus: true })}
+                                /> True
                             </label>
-                            <br/>
-
+                            <br />
                             <label>
-                                <input type="checkbox" checked={immigrantFalse} name="immigrantFalse" onChange={(e) => handleImmigrant(e)}/> False
+                                <input
+                                    type="radio"
+                                    name="immigrantStatus"
+                                    value="false"
+                                    checked={form.immigrantStatus === false}
+                                    onChange={() => setForm({ ...form, immigrantStatus: false })}
+                                /> False
                             </label>
                         </section>
-                        <Link to={'/scholarships'}><button className="form-submit" onClick={() => fetchFormData()}>Form submit for demographics</button>
+                        <Link to={'/scholarships'}><button className="form-submit" onClick={() => fetchFormData()}>Form submit</button>
                         </Link>
                     </section>
                 </section>
             </form>
-
         </>
-
-    )
+    );
 }
 
 export default Form
