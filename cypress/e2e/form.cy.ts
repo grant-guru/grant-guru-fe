@@ -42,7 +42,6 @@ context("Form Component", () => {
   });
 
   it("should navigate to scholarships page on form submit", () => {
-    // You may need to stub the API call here to avoid making a real API call and to control the response
     cy.intercept("GET", "https://college-fund-mock-data-api.herokuapp.com/scholarships", { fixture: 'scholarships.json'});
 
     cy.get("button.form-submit").click();
