@@ -9,6 +9,8 @@ interface DetailProps {
 
 const ScholarshipDetail = (props: DetailProps) => {
 
+    const { filtered } = useAppSelector(state => state.scholarships)
+    
     const selectedScholarship = filtered.find(scholarship => scholarship.id === props.id)
  
     return(
