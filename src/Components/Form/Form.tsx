@@ -76,6 +76,25 @@ const Form = () => {
         });
     };
 
+    const createUrlWithQueryParams = () => {
+        const baseUrl = "https://college-fund-mock-data-api.herokuapp.com/scholarships";
+        const url = new URL(baseUrl);
+        const queryParams = new URLSearchParams();
+    
+        if (form.location) queryParams.append("location", form.location);
+        if (form.educationLevel) queryParams.append("educationLevel", form.educationLevel);
+        if (form.gender) queryParams.append("gender", form.gender);
+        if (form.veteranStatus !== null) queryParams.append("veteranStatus", form.veteranStatus);
+        if (form.immigrantStatus !== null) queryParams.append("immigrantStatus", form.immigrantStatus);
+        if (form.ethnicity.length > 0) queryParams.append("ethnicity", form.ethnicity.join(','));
+    
+        url.search = queryParams.toString();
+    
+        return url;
+    };
+    
+
+
     const fetchFormData = () => {
         //the following 8 lines will be refactored into a method in apiCalls.ts
         fetch("https://college-fund-mock-data-api.herokuapp.com/scholarships")
@@ -91,6 +110,7 @@ const Form = () => {
                 dispatch(setScholarships(data.data))
                 let scholarships = (data.data)
                 window.localStorage.setItem('scholarships', JSON.stringify(scholarships))
+                console.log("here is the query params url",createUrlWithQueryParams().toString())
                 resetForm()
             })
     }
