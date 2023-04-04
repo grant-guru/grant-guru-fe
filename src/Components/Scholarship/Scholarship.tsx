@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './Scholarship.css';
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { addSaved } from "../../slices/savedSlice";
+import { addSaved, deleteSaved } from "../../slices/savedSlice";
 import { apiCalls } from "../../apiCalls";
 
 interface CardProps {
@@ -30,11 +30,15 @@ const Scholarship = (props: CardProps) => {
 
     const {saved} = useAppSelector(state => state.saved)
     const dispatch = useAppDispatch()
+    const [isSaved, setSaved ] = useState(saved.some(save => save.id === props.id))
 
     const handleAdd = () => {
-        const find = saved.find(save => save.id === props.id)
-        if (find === undefined) {
+        if(!isSaved) {
             dispatch(addSaved(props))
+            setSaved(true)
+        } else {
+            dispatch(deleteSaved(props))
+            setSaved(false)
         }
         // apiCalls.addSavedScholarship(user.id, props.id)
         //     .then(json => console.log(json))
@@ -50,7 +54,7 @@ const Scholarship = (props: CardProps) => {
                 <h2>{props.attributes.title}</h2>
                 <p>Award Amount: ${parseFloat(props.attributes.amount).toLocaleString("en-US")}</p>
             </Link>
-            <button onClick={() => handleAdd()}>Save this Scholarship</button>
+            <button onClick={() => handleAdd()} style={{ backgroundColor: isSaved ? "red" : "green"}}>{isSaved ? "Remove from Saved" : "Save this Scholarship"}</button>
         </div>
     )
 }

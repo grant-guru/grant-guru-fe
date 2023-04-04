@@ -58,7 +58,7 @@ const Library = (props: LibraryProps) => {
                 {determineRender()}
             </div>
         </>
-    )
-}
+    );
+};
 
 export default Library
