@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './Form.css';
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setScholarships } from "../../slices/scholarshipsSlice";
 import { setSaved } from "../../slices/savedSlice";
-
 import usStates from "../../data/usStates";
 import { apiCalls } from "../../apiCalls";
 
 const Form = () => {
+    const { user } = useAppSelector(state => state.user)
 
+    useEffect(() => {
+    }, [user])
     const [form, setForm] = useState<any>({
         location: "",
         educationLevel: "",
@@ -21,7 +23,6 @@ const Form = () => {
     })
 
     const dispatch = useAppDispatch()
-    const user = useAppSelector(state => state.user.user)
 
     const handleSelectChange = (e: any, selectType: any) => {
         const value = e.target.value;
@@ -84,28 +85,29 @@ const Form = () => {
         const baseUrl = "https://grant-guru-be.herokuapp.com/api/v1/scholarships";
         const url = new URL(baseUrl);
         const queryParams = new URLSearchParams();
-    
+
         if (form.location) queryParams.append("location", form.location);
         if (form.educationLevel) queryParams.append("educationLevel", form.educationLevel);
         if (form.gender) queryParams.append("gender", form.gender);
         if (form.veteranStatus !== null) queryParams.append("veteranStatus", form.veteranStatus);
         if (form.immigrantStatus !== null) queryParams.append("immigrantStatus", form.immigrantStatus);
         if (form.ethnicity.length > 0) queryParams.append("ethnicity", form.ethnicity.join(','));
-    
+
         url.search = queryParams.toString();
-    
+
         return url;
     };
-    
+
     const fetchFormData = () => {
         let url = createUrlWithQueryParams().toString()
         apiCalls.getScholarships(url)
             .then(data => {
+                console.log("scholarships data from the form fetch", data.data)
                 dispatch(setScholarships(data.data))
                 resetForm()
             })
-            console.log("user inside of the form fetch right before interpolation",user)
-        apiCalls.getSaved(`https://grant-guru-be.herokuapp.com/api/v1/users/${user.id}/favorites/`) 
+        console.log("user inside of the form fetch right before interpolation", user)
+        apiCalls.getSaved(`https://grant-guru-be.herokuapp.com/api/v1/users/${user.id}/favorites/`)
             .then(data => {
                 dispatch(setSaved(data.data))
             })
