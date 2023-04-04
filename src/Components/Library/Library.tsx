@@ -40,17 +40,16 @@ const Library = (props: LibraryProps) => {
     
     const scholarshipCards = scholarships.map(scholarship => <Scholarship key={scholarship.id} {...scholarship} type={props.card}/>)
     const savedCards = favorites.map(scholarship => <Saved key={scholarship.id} {...scholarship} type={props.card}/>)
-    console.log("CARDSS:", props.card)
 
     const determineRender = () => {
-        if (props.card === 'scholarships') {
-            return scholarshipCards.length > 0 ? scholarshipCards : <p>No scholarships available.</p>;
+        if(props.card === 'scholarships') {
+            return scholarshipCards.length > 0 ? scholarshipCards : <p>No scholarships available.</p>
         } else {
-            return savedCards.length > 0 ? savedCards : <p>No saved scholarships.</p>;
+            return savedCards.length > 0 ? savedCards : <p>No saved scholarships available.</p>
         }
-    };
-
-    return (
+    }
+    
+    return(
         <>
             <Header />
             <div className="Library">
