@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import './Library.css';
 import Header from "../Header/Header";
 import Scholarship from "../Scholarship/Scholarship";
@@ -6,6 +6,7 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { stat } from "fs/promises";
 import Saved from "../Saved/Saved";
 import { setScholarships } from "../../slices/scholarshipsSlice";
+import { apiCalls } from "../../apiCalls";
 
 
 interface LibraryProps {
@@ -38,16 +39,32 @@ const Library = (props: LibraryProps) => {
     console.log("HERE are scholarships",scholarships)
     const {saved} = useAppSelector(state => state.saved)
     const dispatch = useAppDispatch()
-    
+    const [ fetching,setFetching ] = useState(false) 
 
+    
+    useEffect(() => {
+        if (!fetching && scholarships.length === 0) {
+            apiCalls.getScholarships()
+                .then(data => {
+                    console.log("data from Library fetch", data);
+                    dispatch(setScholarships(data.data));
+                    setFetching(true)
+                });
+        }
+    }, [dispatch, scholarships.length, fetching]);
+
+
+    
+    console.log("localStorage.scholarships",localStorage.scholarships)
     if (scholarships.length === 0  && localStorage.scholarships.length > 0) {
-        dispatch(setScholarships(localStorage.scholarships))
+        dispatch(setScholarships(JSON.parse(localStorage.scholarships)))
     }
 
     // const scholarships: Array<Scholarship> = JSON.parse(localStorage.scholarships)
     // const favorites: Array<Scholarship> = JSON.parse(localStorage.saved)
-    
-    const scholarshipCards = scholarships?.map(scholarship => <Scholarship key={scholarship.id} {...scholarship} type={props.card}/>)
+    if (scholarships.length === 0) {return <p>No scholarships available.</p>}
+
+    const scholarshipCards = scholarships.map(scholarship => <Scholarship key={scholarship.id} {...scholarship} type={props.card}/>)
     const savedCards = saved.map(scholarship => <Saved key={scholarship.id} {...scholarship} type={props.card}/>)
 
     const determineRender = () => {

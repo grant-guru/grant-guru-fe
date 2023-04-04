@@ -7,6 +7,7 @@ import { setScholarships } from "../../slices/scholarshipsSlice";
 import usStates from "../../data/usStates";
 import { apiCalls } from "../../apiCalls";
 
+
 const Form = () => {
 
     const [form, setForm] = useState<any>({
@@ -19,6 +20,7 @@ const Form = () => {
     })
 
     const dispatch = useAppDispatch()
+
 
     const handleSelectChange = (e: any, selectType: any) => {
         const value = e.target.value;
@@ -95,12 +97,16 @@ const Form = () => {
     };
     
     const fetchFormData = () => {
+        console.log("fetching form data")
         apiCalls.getScholarships()
             .then(data => {
+                console.log("data from form fetch", data)
                 dispatch(setScholarships(data.data))
                 let scholarships = (data.data)
                 window.localStorage.setItem('scholarships', JSON.stringify(scholarships))
+                console.log("scholarships localstorage setting inside form fetch", window.localStorage.scholarships)
                 resetForm()
+
             })
 
         apiCalls.getSaved() 

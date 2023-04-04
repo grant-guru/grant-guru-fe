@@ -10,7 +10,6 @@ export const apiCalls = {
             })
         )
     },
-
     getScholarships () {
         return (
             fetch("https://college-fund-mock-data-api.herokuapp.com/scholarships")

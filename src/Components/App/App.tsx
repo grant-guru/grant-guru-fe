@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import Form from '../Form/Form';
@@ -8,6 +8,7 @@ import Saved from '../Saved/Saved';
 import ScholarshipDetail from '../ScholarshipDetail/ScholarshipDetail'
 
 function App() {
+  const [formUrl, setFormUrl] = useState('')
 
   return (
     <main className="App">
