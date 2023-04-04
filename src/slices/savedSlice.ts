@@ -12,7 +12,6 @@ const initialState: SavedState = {
 export const savedSlice = createSlice({
   name: 'saved',
   initialState,
-  
   reducers: {
     setSaved: (state, action: PayloadAction <any>) => {
         //update the types here for the payload

@@ -26,15 +26,29 @@ interface CardProps {
 }
 
 const Scholarship = (props: CardProps) => {
-    const { saved } = useAppSelector(state => state.saved)
 
-    const dispatch = useAppDispatch()
+    const handleClick = () => {
+
+        // const user = JSON.parse(localStorage.user)
+
+
+        // fetch(`/api/v1/users/${user.id}/scholarships/${props.id}`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        //   })
+        //     // .then(response => response.json())
+        //     // .then(json => console.log(json))
+        //     .catch(err => console.log(err));
+    }
 
     const handleAdd = () => {
         const find = saved.find(save => save.id === props.id)
         if (find === undefined) {
             dispatch(addSaved(props))
         }
+
     }
     const handleDelete = () => {
         console.log('you clicked the delete button')
