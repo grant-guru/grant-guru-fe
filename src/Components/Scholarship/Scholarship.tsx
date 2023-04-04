@@ -3,6 +3,7 @@ import './Scholarship.css';
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { addSaved } from "../../slices/savedSlice";
+import { apiCalls } from "../../apiCalls";
 
 interface CardProps {
     id: string,
@@ -29,18 +30,11 @@ const Scholarship = (props: CardProps) => {
 
     const handleClick = () => {
 
-        // const user = JSON.parse(localStorage.user)
+        const user = JSON.parse(localStorage.user)
 
-
-        // fetch(`/api/v1/users/${user.id}/scholarships/${props.id}`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        //   })
-        //     // .then(response => response.json())
-        //     // .then(json => console.log(json))
-        //     .catch(err => console.log(err));
+        apiCalls.addSavedScholarship(user.id, props.id)
+            .then(json => console.log(json))
+            .catch(err => console.log(err))
     }
 
     // const handleAdd = () => {
