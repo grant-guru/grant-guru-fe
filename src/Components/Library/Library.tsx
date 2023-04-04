@@ -33,13 +33,15 @@ interface Scholarship {
 
 const Library = (props: LibraryProps) => {
 
+    const {filtered} = useAppSelector(state => state.scholarships)
     const {saved} = useAppSelector(state => state.saved)
+
+
+    // const scholarships: Array<Scholarship> = JSON.parse(localStorage.scholarships)
+    // const favorites: Array<Scholarship> = JSON.parse(localStorage.saved)
     
-    const scholarships: Array<Scholarship> = JSON.parse(localStorage.scholarships)
-    const favorites: Array<Scholarship> = JSON.parse(localStorage.saved)
-    
-    const scholarshipCards = scholarships.map(scholarship => <Scholarship key={scholarship.id} {...scholarship} type={props.card}/>)
-    const savedCards = favorites.map(scholarship => <Saved key={scholarship.id} {...scholarship} type={props.card}/>)
+    const scholarshipCards = filtered.map(scholarship => <Scholarship key={scholarship.id} {...scholarship} type={props.card}/>)
+    const savedCards = saved.map(scholarship => <Saved key={scholarship.id} {...scholarship} type={props.card}/>)
 
     const determineRender = () => {
         if(props.card === 'scholarships') {
