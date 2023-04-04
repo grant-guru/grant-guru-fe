@@ -22,12 +22,12 @@ interface Scholarship {
 }
 
 export interface ScholarshipsState {
-    filtered: Array<Scholarship>
+    scholarships: Array<Scholarship>
 // update type any to be an interface for the object that scholarships should be
 }
 
 const initialState: ScholarshipsState = {
-  filtered: [],
+  scholarships: [],
 };
 
 export const scholarshipsSlice = createSlice({
@@ -38,7 +38,7 @@ export const scholarshipsSlice = createSlice({
     setScholarships: (state, action: PayloadAction<Array<Scholarship>>) => {
         //update the types here for the payload
 
-      state.filtered = action.payload;
+      state.scholarships = action.payload;
     }
   }
 });
