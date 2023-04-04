@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './Library.css';
 import Header from "../Header/Header";
 import Scholarship from "../Scholarship/Scholarship";
@@ -33,11 +33,13 @@ interface Scholarship {
 
 const Library = (props: LibraryProps) => {
 
+    const {saved} = useAppSelector(state => state.saved)
+    
     const scholarships: Array<Scholarship> = JSON.parse(localStorage.scholarships)
-    const { saved } = useAppSelector(state => state.saved)
+    const favorites: Array<Scholarship> = JSON.parse(localStorage.saved)
     
     const scholarshipCards = scholarships.map(scholarship => <Scholarship key={scholarship.id} {...scholarship} type={props.card}/>)
-    const savedCards = saved.map(scholarship => <Saved key={scholarship.id} {...scholarship} type={props.card}/>)
+    const savedCards = favorites.map(scholarship => <Saved key={scholarship.id} {...scholarship} type={props.card}/>)
     
     return(
         <>
