@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import { useAppDispatch } from "../../app/hooks";
 import { setScholarships } from "../../slices/scholarshipsSlice";
 import usStates from "../../data/usStates";
+import { apiCalls } from "../../apiCalls";
 
 const Form = () => {
 
@@ -94,38 +95,19 @@ const Form = () => {
     };
     
     const fetchFormData = () => {
-        //the following 8 lines will be refactored into a method in apiCalls.ts
-        fetch("https://college-fund-mock-data-api.herokuapp.com/scholarships")
-            .then(res => {
-                if (res.ok) {
-                    return res.json()
-                } else {
-                    return new Error("Trouble fetching form-filtered scholarships")
-                }
-            })
-
+        apiCalls.getScholarships()
             .then(data => {
                 dispatch(setScholarships(data.data))
                 let scholarships = (data.data)
                 window.localStorage.setItem('scholarships', JSON.stringify(scholarships))
-                //console.log("here is the query params url",createUrlWithQueryParams().toString())
                 resetForm()
             })
 
-            fetch("https://college-fund-mock-data-api.herokuapp.com/favorites")
-                .then(res => {
-                    if (res.ok) {
-                        return res.json()
-                    } else {
-                        return new Error("Trouble fetching saved scholarships")
-                    }
-                })
-
-                .then(data => {
-                    let saved = (data.data)
-                    window.localStorage.setItem('saved', JSON.stringify(saved))
-                    //console.log('this is from the form local storage', JSON.parse(localStorage.saved))
-                })
+        apiCalls.getSaved() 
+            .then(data => {
+                let saved = (data.data)
+                window.localStorage.setItem('saved', JSON.stringify(saved))
+            })
     }
 
     return (
