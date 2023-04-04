@@ -24,20 +24,22 @@ interface CardProps {
 }
 
 const Saved = (props: CardProps) => {
-    
+
     const handleClick = () => {
         console.log('you clicked the delete button')
     }
 
-    return(
-        <>
+    return (
+        <div className="Saved">
+            <div className="card-image">
+                <img src={props.attributes.image_url} alt={props.attributes.title} />
+            </div>
             <Link to={`/scholarship/${props.id}`}>
                 <h2>{props.attributes.title}</h2>
-                <h3>{props.attributes.description}</h3>
-                <p>{props.attributes.amount}</p>
+                <p>Award Amount: ${parseFloat(props.attributes.amount).toLocaleString("en-US")}</p>
             </Link>
             <button onClick={() => handleClick()}>Remove from Saved</button>
-        </>
+        </div>
     )
 }
 
