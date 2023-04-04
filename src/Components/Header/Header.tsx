@@ -9,7 +9,7 @@ const Header: React.FC = () => {
         
     const profile = JSON.parse(localStorage.user)
 
-    console.log('profile', profile)
+    // console.log('profile', profile)
 
     return (
         <div className='header'>
