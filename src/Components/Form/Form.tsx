@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import { useAppDispatch } from "../../app/hooks";
 import { setScholarships } from "../../slices/scholarshipsSlice";
+import { setSaved } from "../../slices/savedSlice";
+
 import usStates from "../../data/usStates";
 import { apiCalls } from "../../apiCalls";
 
@@ -94,19 +96,31 @@ const Form = () => {
         return url;
     };
     
+    // const fetchFormData = () => {
+    //     apiCalls.getScholarships()
+    //         .then(data => {
+    //             dispatch(setScholarships(data.data))
+    //             let scholarships = (data.data)
+    //             window.localStorage.setItem('scholarships', JSON.stringify(scholarships))
+    //             resetForm()
+    //         })
+
+    //     apiCalls.getSaved() 
+    //         .then(data => {
+    //             let saved = (data.data)
+    //             window.localStorage.setItem('saved', JSON.stringify(saved))
+    //         })
+    // }
     const fetchFormData = () => {
         apiCalls.getScholarships()
             .then(data => {
                 dispatch(setScholarships(data.data))
-                let scholarships = (data.data)
-                window.localStorage.setItem('scholarships', JSON.stringify(scholarships))
                 resetForm()
             })
 
         apiCalls.getSaved() 
             .then(data => {
-                let saved = (data.data)
-                window.localStorage.setItem('saved', JSON.stringify(saved))
+                dispatch(setSaved(data.data))
             })
     }
 

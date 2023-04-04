@@ -28,25 +28,18 @@ interface CardProps {
 
 const Scholarship = (props: CardProps) => {
 
-    const handleClick = () => {
+    const {saved} = useAppSelector(state => state.saved)
+    const dispatch = useAppDispatch()
 
-        const user = JSON.parse(localStorage.user)
-
-        apiCalls.addSavedScholarship(user.id, props.id)
-            .then(json => console.log(json))
-            .catch(err => console.log(err))
+    const handleAdd = () => {
+        const find = saved.find(save => save.id === props.id)
+        if (find === undefined) {
+            dispatch(addSaved(props))
+        }
+        // apiCalls.addSavedScholarship(user.id, props.id)
+        //     .then(json => console.log(json))
+        //     .catch(err => console.log(err))
     }
-
-    // const handleAdd = () => {
-    //     const find = saved.find(save => save.id === props.id)
-    //     if (find === undefined) {
-    //         dispatch(addSaved(props))
-    //     }
-
-    // }
-    // const handleDelete = () => {
-    //     console.log('you clicked the delete button')
-    // }
 
     return (
         <div className="Scholarship">
@@ -57,7 +50,7 @@ const Scholarship = (props: CardProps) => {
                 <h2>{props.attributes.title}</h2>
                 <p>Award Amount: ${parseFloat(props.attributes.amount).toLocaleString("en-US")}</p>
             </Link>
-            <button onClick={() => handleClick()}>Save this Scholarship</button>
+            <button onClick={() => handleAdd()}>Save this Scholarship</button>
         </div>
     )
 }
