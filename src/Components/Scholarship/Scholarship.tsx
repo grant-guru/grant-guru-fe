@@ -27,10 +27,6 @@ interface CardProps {
 
 const Scholarship = (props: CardProps) => {
 
-    const { saved } = useAppSelector(state => state.saved)
-
-    const dispatch = useAppDispatch()
-
     const handleClick = () => {
 
         // const user = JSON.parse(localStorage.user)
@@ -44,11 +40,6 @@ const Scholarship = (props: CardProps) => {
         //     // .then(response => response.json())
         //     // .then(json => console.log(json))
         //     .catch(err => console.log(err));
-
-        // const find = saved.find(save => save.id === props.id)
-        // if (find === undefined) {
-        //   dispatch(addSaved(props))
-        // }
     }
 
     return(
