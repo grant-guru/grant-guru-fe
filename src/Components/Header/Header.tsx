@@ -9,11 +9,13 @@ const Header: React.FC = () => {
         
     const profile = JSON.parse(localStorage.user)
 
+    console.log('profile', profile)
+
     return (
         <div className='header'>
             <div className='user'>
-                <img src={profile.img_url}/>
-                <h1>Welcome {profile.first_name}!</h1>
+                <img src={profile.attributes.image_url}/>
+                <h1>Welcome {profile.attributes.first_name}!</h1>
             </div>
             <nav>
                   <Link to='/form'>Form</Link>
