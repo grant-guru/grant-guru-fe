@@ -2,7 +2,7 @@ import React from "react";
 import './Saved.css';
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { setSaved } from "../../slices/savedSlice";
+import { setSaved, deleteSaved } from "../../slices/savedSlice";
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { apiCalls } from "../../apiCalls";
 
@@ -50,29 +50,15 @@ interface Scholarship {
 
 const Saved = (props: CardProps) => {
 
-
-    //const {saved} = useAppSelector(state => state.saved)
     const dispatch = useAppDispatch()
-
-    const removeSaved = (scholarshipID: string) => {
-
-        const favorites = JSON.parse(localStorage.saved)
-        const newSaved: Array<Scholarship> = favorites.filter((scholarship: Scholarship) => scholarship.id !== scholarshipID)
-
-        window.localStorage.setItem('saved', JSON.stringify(newSaved))
-        dispatch(setSaved(newSaved))
-    }
     
-    const handleClick = () => {
-
-        const user = JSON.parse(localStorage.user)
+    const handleDelete = () => {
 
         // apiCalls.deleteSavedScholarship(user.id, props.id)
         //     .then(() => removeSaved(props.id))
         //     .catch(err => console.log(err))
 
-        //delete this removeSaved after the .then is commented
-        removeSaved(props.id)
+        dispatch(deleteSaved(props))
     }
 
     return (
@@ -84,7 +70,7 @@ const Saved = (props: CardProps) => {
                 <h2>{props.attributes.title}</h2>
                 <p>Award Amount: ${parseFloat(props.attributes.amount).toLocaleString("en-US")}</p>
             </Link>
-            <button onClick={() => handleClick()}>Remove from Saved</button>
+            <button onClick={() => handleDelete()}>Remove from Saved</button>
         </div>
     )
 }
