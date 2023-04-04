@@ -2,7 +2,7 @@
 
 context("Form Component", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/");
+    cy.visit("localhost:3000");
     cy.get(".user-card-container").first().click();
   });
 
@@ -43,6 +43,8 @@ context("Form Component", () => {
 
   it("should navigate to scholarships page on form submit", () => {
     cy.intercept("GET", "https://college-fund-mock-data-api.herokuapp.com/scholarships", { fixture: 'scholarships.json'});
+    cy.intercept("GET", "https://college-fund-mock-data-api.herokuapp.com/favorites", { fixture: 'saved.json'});
+
 
     cy.get("button.form-submit").click();
     cy.location("pathname").should("eq", "/scholarships");

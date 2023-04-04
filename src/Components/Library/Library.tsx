@@ -32,7 +32,7 @@ interface Scholarship {
 }
 
 const Library = (props: LibraryProps) => {
-
+    // const {scholarships} = useAppSelector(state => state.scholarships)
     const {saved} = useAppSelector(state => state.saved)
     
     if (localStorage.scholarships === undefined) {
