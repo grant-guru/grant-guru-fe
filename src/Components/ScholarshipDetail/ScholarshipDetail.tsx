@@ -1,12 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import './ScholarshipDetail.css';
 import Header from "../Header/Header";
-import { useAppSelector } from '../../app/hooks';
-import { addSaved } from "../../slices/savedSlice";
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { addSaved, deleteSaved } from "../../slices/savedSlice";
 import { apiCalls } from "../../apiCalls";
 
 interface DetailProps {
-    id: string
+    id: string,
 }
 
 const ScholarshipDetail = (props: DetailProps) => {
@@ -15,23 +15,38 @@ const ScholarshipDetail = (props: DetailProps) => {
     
     const selectedScholarship = filtered.find(scholarship => scholarship.id === props.id)
 
-    // const handleClick = () => {
+    const {saved} = useAppSelector(state => state.saved)
+    const dispatch = useAppDispatch()
+    const [isSaved, setSaved ] = useState(saved.some(save => save.id === props.id))
 
-    //     const user = JSON.parse(localStorage.user)
-
-    //     apiCalls.addSaved(user.id, props.id)
-    //         .then(json => console.log(json))
-    //         .catch(err => console.log(err))
-    // }
+    const handleAdd = () => {
+        if(!isSaved) {
+            dispatch(addSaved(props))
+            setSaved(true)
+        } else {
+            dispatch(deleteSaved(props))
+            setSaved(false)
+        }
+        // apiCalls.addSavedScholarship(user.id, props.id)
+        //     .then(json => console.log(json))
+        //     .catch(err => console.log(err))
+    }
  
     return(
         <>
             <Header />
             <div className='scholarshipDetail'>
                 <h1> {selectedScholarship?.attributes.title} </h1>
-                <h3> ${selectedScholarship?.attributes.amount} </h3>
-                <p> {selectedScholarship?.attributes.description} </p>
-                {/* <button onClick={() => handleClick()}>Save this Scholarship</button> */}
+                <body style={{
+                backgroundImage: `url(${selectedScholarship?.attributes.image_url})`,
+                }}>
+                    <div className="background-gradient">
+                    <h2> ${selectedScholarship?.attributes.amount} </h2>
+                    <p> {selectedScholarship?.attributes.description} </p>
+                    <h4> <label>Deadline for submission:</label><br/>{selectedScholarship?.attributes.deadline} </h4>
+                    <button className="scholarship-button" onClick={() => handleAdd()} style={{ backgroundColor: isSaved ? "red" : "green"}}>{isSaved ? "Remove from Saved" : "Save this Scholarship"}</button>
+                    </div>
+                </body>
             </div>
         </>
 
