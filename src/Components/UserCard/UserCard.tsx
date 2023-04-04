@@ -32,21 +32,24 @@ const UserCard = (props: UserCardProps) => {
 
     const handleClick = (e: any) => {
         e.preventDefault();
-        console.log("user query url",createUrlWithQueryParams(e).toString())
-        console.log('clicked')
-        console.log('userID: e.t.id', e.target.id)
-        const userID = e.target.id
-        const url = `https://college-fund-mock-data-api.herokuapp.com/user`
-        fetch(url)
-        .then(response => response.json())
+
+        fetch(createUrlWithQueryParams(e).toString())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error fetching user data: ${response.statusText}`);
+            }
+            return response.json();
+        })
         .then(data => {
             dispatch(setUser(data))
-            console.log("this is the fetch data",data.data)
             history.push('/form')
             const user = data.data 
             window.localStorage.setItem('user', JSON.stringify(user))
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            console.error('Error fetching user data:', error.message);
+            return <div>{error.message}</div>
+        });
     }
 
     return(
@@ -59,4 +62,4 @@ const UserCard = (props: UserCardProps) => {
     )
 }
     
-export default UserCard
+export default UserCard;
