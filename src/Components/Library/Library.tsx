@@ -36,14 +36,8 @@ const Library = (props: LibraryProps) => {
     const {filtered} = useAppSelector(state => state.scholarships)
     const {saved} = useAppSelector(state => state.saved)
 
-
     const scholarshipCards = filtered.map(scholarship => <Scholarship key={scholarship.id} {...scholarship} type={props.card}/>)
     const savedCards = saved.map(scholarship => <Saved key={scholarship.id} {...scholarship} type={props.card}/>)
-
-
-    useEffect(() => {
-        
-    }, [filtered, saved])
 
     const determineRender = () => {
         if(props.card === 'scholarships') {
@@ -53,7 +47,9 @@ const Library = (props: LibraryProps) => {
         }
     }
 
-    // check if state is empty, if so render loading
+    useEffect(() => {
+        
+    }, [filtered, saved])
     
     return(
         <>
