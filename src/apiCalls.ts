@@ -1,8 +1,8 @@
 export const apiCalls = {
     
-    getScholarships () {
+    getScholarships (url :string) {
         return (
-            fetch("https://college-fund-mock-data-api.herokuapp.com/scholarships")
+            fetch(url)
             .then(res => {
                 if (res.ok) {
                     return res.json()
@@ -12,9 +12,9 @@ export const apiCalls = {
             })
         )
     },
-    getSaved () {
+    getSaved (url: string) {
         return (
-            fetch("https://college-fund-mock-data-api.herokuapp.com/favorites")
+            fetch(url)
             .then(res => {
                 if (res.ok) {
                     return res.json()

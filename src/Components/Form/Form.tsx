@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './Form.css';
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setScholarships } from "../../slices/scholarshipsSlice";
 import { setSaved } from "../../slices/savedSlice";
 
@@ -21,6 +21,7 @@ const Form = () => {
     })
 
     const dispatch = useAppDispatch()
+    const user = useAppSelector(state => state.user.user)
 
     const handleSelectChange = (e: any, selectType: any) => {
         const value = e.target.value;
@@ -80,7 +81,7 @@ const Form = () => {
     };
 
     const createUrlWithQueryParams = () => {
-        const baseUrl = "https://college-fund-mock-data-api.herokuapp.com/scholarships";
+        const baseUrl = "https://grant-guru-be.herokuapp.com/api/v1/scholarships";
         const url = new URL(baseUrl);
         const queryParams = new URLSearchParams();
     
@@ -96,29 +97,15 @@ const Form = () => {
         return url;
     };
     
-    // const fetchFormData = () => {
-    //     apiCalls.getScholarships()
-    //         .then(data => {
-    //             dispatch(setScholarships(data.data))
-    //             let scholarships = (data.data)
-    //             window.localStorage.setItem('scholarships', JSON.stringify(scholarships))
-    //             resetForm()
-    //         })
-
-    //     apiCalls.getSaved() 
-    //         .then(data => {
-    //             let saved = (data.data)
-    //             window.localStorage.setItem('saved', JSON.stringify(saved))
-    //         })
-    // }
     const fetchFormData = () => {
-        apiCalls.getScholarships()
+        let url = createUrlWithQueryParams().toString()
+        apiCalls.getScholarships(url)
             .then(data => {
                 dispatch(setScholarships(data.data))
                 resetForm()
             })
-
-        apiCalls.getSaved() 
+            console.log("user inside of the form fetch right before interpolation",user)
+        apiCalls.getSaved(`https://grant-guru-be.herokuapp.com/api/v1/users/${user.id}/favorites/`) 
             .then(data => {
                 dispatch(setSaved(data.data))
             })

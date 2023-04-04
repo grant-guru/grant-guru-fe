@@ -9,15 +9,15 @@ const Header: React.FC = () => {
     const { user } = useAppSelector(state => state.user)
     const dispatch = useAppDispatch()
 
-    if (user.data === undefined && localStorage.user !== undefined) {
+    if (user.id === undefined && localStorage.user !== undefined) {
         dispatch(setUser(localStorage.user))
     }
 
     return (
         <div className='header'>
             <div className='user'>
-                <img src={user.data.attributes.image_url}/>
-                <h1>Welcome {user.data.attributes.first_name}!</h1>
+                <img src={user.attributes.image_url}/>
+                <h1>Welcome {user.attributes.first_name}!</h1>
             </div>
             <nav>
                   <Link to='/form'>Form</Link>
