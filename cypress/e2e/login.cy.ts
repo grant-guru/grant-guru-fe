@@ -4,7 +4,7 @@
 describe("Login view", () => {
   beforeEach(() => {
     // Visit the login page before each test
-    cy.visit("http://localhost:3000/");
+    cy.visit("https://grant-guru-fe.vercel.app/");
   });
 
   it("displays the login container", () => {

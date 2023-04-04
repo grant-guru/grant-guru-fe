@@ -21,6 +21,7 @@ const UserCard = (props: UserCardProps) => {
     const history = useHistory()
 
     const createUrlWithQueryParams = (e: any) => {
+        // const baseUrl = "https://grant-guru-be.herokuapp.com/api/v1/users/";
         const baseUrl = "https://college-fund-mock-data-api.herokuapp.com/user";
         const url = new URL(baseUrl);
         const queryParams = new URLSearchParams();
@@ -43,7 +44,6 @@ const UserCard = (props: UserCardProps) => {
         })
         .catch(error => {
             console.error('Error fetching user data:', error.message);
-            return <div>{error.message}</div>
         });
     }
 
