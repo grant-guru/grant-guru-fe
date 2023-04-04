@@ -35,6 +35,12 @@ const Library = (props: LibraryProps) => {
 
     const {saved} = useAppSelector(state => state.saved)
     
+    if (localStorage.scholarships === undefined) {
+        localStorage.setItem('scholarships', JSON.stringify([]))
+    }
+    if (localStorage.saved === undefined) {
+        localStorage.setItem('saved', JSON.stringify([]))
+    }
     const scholarships: Array<Scholarship> = JSON.parse(localStorage.scholarships)
     const favorites: Array<Scholarship> = JSON.parse(localStorage.saved)
     

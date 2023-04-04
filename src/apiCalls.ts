@@ -1,5 +1,16 @@
 export const apiCalls = {
-    
+    getUser (url: string) {
+        return (
+            fetch(`${url}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error fetching user data: ${response.statusText}`);
+                }
+                return response.json();
+            })
+        )
+    },
+
     getScholarships () {
         return (
             fetch("https://college-fund-mock-data-api.herokuapp.com/scholarships")

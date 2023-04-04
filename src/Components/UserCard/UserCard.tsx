@@ -3,6 +3,8 @@ import './UserCard.css';
 import { useAppDispatch } from "../../app/hooks"
 import { setUser } from "../../slices/userSlice";
 import { useHistory } from "react-router-dom";
+import { apiCalls } from "../../apiCalls";
+
 
 interface UserCardProps {
     id: string,
@@ -32,14 +34,7 @@ const UserCard = (props: UserCardProps) => {
 
     const handleClick = (e: any) => {
         e.preventDefault();
-
-        fetch(createUrlWithQueryParams(e).toString())
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error fetching user data: ${response.statusText}`);
-            }
-            return response.json();
-        })
+        apiCalls.getUser(createUrlWithQueryParams(e).toString())
         .then(data => {
             dispatch(setUser(data))
             history.push('/form')
