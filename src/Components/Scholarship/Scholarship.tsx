@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './Scholarship.css';
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
@@ -31,6 +31,7 @@ const Scholarship = (props: CardProps) => {
 
         // const user = JSON.parse(localStorage.user)
 
+
         // fetch(`/api/v1/users/${user.id}/scholarships/${props.id}`, {
         //     method: 'POST',
         //     headers: {
@@ -42,16 +43,29 @@ const Scholarship = (props: CardProps) => {
         //     .catch(err => console.log(err));
     }
 
-    return(
-        <>
+    const handleAdd = () => {
+        const find = saved.find(save => save.id === props.id)
+        if (find === undefined) {
+            dispatch(addSaved(props))
+        }
+
+    }
+    const handleDelete = () => {
+        console.log('you clicked the delete button')
+    }
+
+    return (
+        <div className="Scholarship">
+            <div className="card-image">
+                <img src={props.attributes.image_url} alt={props.attributes.title} />
+            </div>
             <Link to={`/scholarship/${props.id}`}>
                 <h2>{props.attributes.title}</h2>
-                <h3>{props.attributes.description}</h3>
-                <p>{props.attributes.amount}</p>
+                <p>Award Amount: ${parseFloat(props.attributes.amount).toLocaleString("en-US")}</p>
             </Link>
-            <button onClick={() => handleClick()}>Save this Scholarship</button>
-        </>
+            <button onClick={() => handleAdd()}>Save this Scholarship</button>
+        </div>
     )
 }
-    
+
 export default Scholarship
