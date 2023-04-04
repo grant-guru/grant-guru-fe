@@ -37,19 +37,23 @@ const Library = (props: LibraryProps) => {
     const {saved} = useAppSelector(state => state.saved)
 
 
-    // const scholarships: Array<Scholarship> = JSON.parse(localStorage.scholarships)
-    // const favorites: Array<Scholarship> = JSON.parse(localStorage.saved)
-    
     const scholarshipCards = filtered.map(scholarship => <Scholarship key={scholarship.id} {...scholarship} type={props.card}/>)
     const savedCards = saved.map(scholarship => <Saved key={scholarship.id} {...scholarship} type={props.card}/>)
 
+
+    useEffect(() => {
+        
+    }, [filtered, saved])
+
     const determineRender = () => {
         if(props.card === 'scholarships') {
-            return scholarshipCards.length > 0 ? scholarshipCards : <p>No scholarships available.</p>
+            return filtered.length > 0 ? scholarshipCards : <p>No scholarships available.</p>
         } else {
             return savedCards.length > 0 ? savedCards : <p>No saved scholarships available.</p>
         }
     }
+
+    // check if state is empty, if so render loading
     
     return(
         <>
