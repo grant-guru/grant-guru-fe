@@ -51,10 +51,10 @@ const Scholarship = (props: CardProps) => {
                 <img src={props.attributes.image_url} alt={props.attributes.title} />
             </div>
             <Link to={`/scholarship/${props.id}`}>
-                <h2>{props.attributes.title}</h2>
-                <p>Award Amount: ${parseFloat(props.attributes.amount).toLocaleString("en-US")}</p>
+                <h2 className="scholarship-title">{props.attributes.title}</h2>
+                <p className="scholarship-award">Award Amount: ${parseFloat(props.attributes.amount).toLocaleString("en-US")}</p>
             </Link>
-            <button onClick={() => handleAdd()} style={{ backgroundColor: isSaved ? "red" : "green"}}>{isSaved ? "Remove from Saved" : "Save this Scholarship"}</button>
+            <button className="scholarship-button" onClick={() => handleAdd()} style={{ backgroundColor: isSaved ? "red" : "green"}}>{isSaved ? "Remove from Saved" : "Save this Scholarship"}</button>
         </div>
     )
 }
