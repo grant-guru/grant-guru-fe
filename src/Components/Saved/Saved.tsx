@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { setSaved } from "../../slices/savedSlice";
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { apiCalls } from "../../apiCalls";
 
 interface CardProps {
     id: string,
@@ -66,20 +67,11 @@ const Saved = (props: CardProps) => {
 
         const user = JSON.parse(localStorage.user)
 
-        // fetch(`/api/v1/users/${user.id}/scholarships/${props.id}`, {
-        //     method: 'DELETE',
-        //     headers: {
-        //       'Content-Type': 'application/json'
-        //     }
-        //   })
-        //     .then(response => {
-        //       if (!response.ok) {
-        //         throw new Error('Something went wrong')
-        //       } 
-
-        //       removeSaved(props.id)
-        //     })
+        // apiCalls.deleteSavedScholarship(user.id, props.id)
+        //     .then(() => removeSaved(props.id))
         //     .catch(err => console.log(err))
+
+        //delete this removeSaved after the .then is commented
         removeSaved(props.id)
     }
 
