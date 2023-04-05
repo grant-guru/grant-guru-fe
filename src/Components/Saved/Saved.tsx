@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { setSaved, deleteSaved } from "../../slices/savedSlice";
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { apiCalls } from "../../apiCalls";
+import { setDeleteSaveError } from "../../slices/errorSlice";
 
 interface CardProps {
     id: string,
@@ -59,7 +60,7 @@ const Saved = (props: CardProps) => {
               console.log("DELETE CONSOLE LOG:", data)
               dispatch(deleteSaved(props))
             })
-            .catch(err => console.log(err))
+            .catch(error => dispatch(setDeleteSaveError(error.message)))
     }
 
     return (

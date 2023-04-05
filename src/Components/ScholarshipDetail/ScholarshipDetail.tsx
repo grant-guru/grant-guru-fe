@@ -4,6 +4,7 @@ import Header from "../Header/Header";
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { addSaved, deleteSaved } from "../../slices/savedSlice";
 import { apiCalls } from "../../apiCalls";
+import { setAddSaveError, setDeleteSaveError } from "../../slices/errorSlice";
 
 interface DetailProps {
   id: string;
@@ -32,7 +33,7 @@ const ScholarshipDetail: React.FC<DetailProps> = (props) => {
             console.log("POST CONSOLE LOG:", data)
             dispatch(addSaved(selectedScholarship))
           })
-          .catch(err => console.log(err))
+          .catch(error => dispatch(setAddSaveError(error.message)))
     } else {
        apiCalls.deleteSavedScholarship(user.id, props.id)
             .then((data) => {
@@ -40,7 +41,7 @@ const ScholarshipDetail: React.FC<DetailProps> = (props) => {
               dispatch(deleteSaved(selectedScholarship))
               setSaved(false);
             })
-            .catch(err => console.log(err))
+            .catch(error => dispatch(setDeleteSaveError(error.message)))
     }
   }
 
