@@ -82,7 +82,10 @@ const Login = () => {
 
     return(
         <div className="login-container">
-            <h1>Choose Your Profile</h1>
+            <div className="welcome-login">
+                <h1>Welcome to Grant Guru!</h1>
+                <h2>Choose Your Profile</h2>
+            </div>
             <div className="user-cards-container">
                 {UserCards}
             </div>
