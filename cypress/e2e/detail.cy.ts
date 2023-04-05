@@ -24,4 +24,9 @@ describe("should navigate to scholarships page on form submit", () => {
     cy.get('.scholarship-button').contains("Remove from Saved").click()
     cy.get('.scholarship-button').contains("Save this Scholarship").click()
   })
+
+  it("Should be able to add to saved array", () => {
+    cy.get('.saves').click()
+    cy.get('.Library > :nth-child(4)').should('be.visible')
+  });
 })
