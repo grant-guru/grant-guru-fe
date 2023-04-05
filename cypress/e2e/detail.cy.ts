@@ -20,4 +20,8 @@ describe("should navigate to scholarships page on form submit", () => {
     cy.get('h4').contains('label', 'Deadline for submission:')
   })
 
+  it("Should be able to save button and the button character changes", () => {
+    cy.get('.scholarship-button').contains("Remove from Saved").click()
+    cy.get('.scholarship-button').contains("Save this Scholarship").click()
+  })
 })
