@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './ScholarshipDetail.css';
 import Header from "../Header/Header";
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
@@ -19,12 +19,15 @@ const ScholarshipDetail: React.FC<DetailProps> = (props) => {
   const dispatch = useAppDispatch();
   const [isSaved, setSaved] = useState(saved?.some(save => save.id === props.id));
 
+  useEffect(() => {
+  }, [saved])
+
   const handleAdd = () => {
     if (!isSaved) {
-      dispatch(addSaved(props));
+      dispatch(addSaved(selectedScholarship));
       setSaved(true);
     } else {
-      dispatch(deleteSaved(props));
+      dispatch(deleteSaved(selectedScholarship));
       setSaved(false);
     }
     // apiCalls.addSavedScholarship(user.id, props.id)
@@ -37,7 +40,7 @@ const ScholarshipDetail: React.FC<DetailProps> = (props) => {
       <Header />
       <div className='scholarshipDetail'>
         <h1> {selectedScholarship?.attributes.title} </h1>
-        <body style={{
+        <section style={{
           backgroundImage: `url(${selectedScholarship?.attributes.image_url})`,
         }}>
           <div className="background-gradient">
@@ -46,7 +49,7 @@ const ScholarshipDetail: React.FC<DetailProps> = (props) => {
             <h4> <label>Deadline for submission:</label><br/>{selectedScholarship?.attributes.deadline} </h4>
             <button className="scholarship-button" onClick={() => handleAdd()} style={{ backgroundColor: isSaved ? "red" : "green"}}>{isSaved ? "Remove from Saved" : "Save this Scholarship"}</button>
           </div>
-        </body>
+        </section>
       </div>
     </>
   );

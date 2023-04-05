@@ -64,11 +64,11 @@ const Saved = (props: CardProps) => {
     return (
         <div className="Saved">
             <div className="card-image">
-                <img src={props.attributes.image_url} alt={props.attributes.title} />
+                <img src={props.attributes?.image_url} alt={props.attributes?.title} />
             </div>
             <Link to={`/scholarship/${props.id}`}>
-                <h2>{props.attributes.title}</h2>
-                <p>Award Amount: ${parseFloat(props.attributes.amount).toLocaleString("en-US")}</p>
+                <h2>{props.attributes?.title}</h2>
+                <p>Award Amount: ${parseFloat(props.attributes?.amount).toLocaleString("en-US")}</p>
             </Link>
             <button onClick={() => handleDelete()}>Remove from Saved</button>
         </div>
