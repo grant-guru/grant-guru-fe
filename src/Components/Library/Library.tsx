@@ -6,6 +6,7 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { stat } from "fs/promises";
 import Saved from "../Saved/Saved";
 import { setScholarships } from "../../slices/scholarshipsSlice";
+import { setSaved } from "../../slices/savedSlice";
 
 interface LibraryProps {
     card: string
@@ -42,6 +43,11 @@ const Library = (props: LibraryProps) => {
         if (localStorage.getItem('filtered') !== null && filtered.length === 0) {
             const storedFiltered = JSON.parse(localStorage.getItem('filtered') as string);
             dispatch(setScholarships(storedFiltered));
+        }
+
+        if (localStorage.getItem('saved') !== null && filtered.length === 0) {
+            const storedSaved = JSON.parse(localStorage.getItem('saved') as string);
+            dispatch(setSaved(storedSaved));
         }
     }, []);
 

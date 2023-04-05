@@ -118,6 +118,8 @@ const Form = () => {
         apiCalls.getSaved(savedUrl)
             .then(data => {
                 dispatch(setSaved(data.data))
+                window.localStorage.setItem('saved', JSON.stringify(data.data))
+
             })
     }
 
