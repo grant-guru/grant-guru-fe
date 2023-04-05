@@ -51,14 +51,15 @@ interface Scholarship {
 const Saved = (props: CardProps) => {
 
     const dispatch = useAppDispatch()
-    
+    const user = JSON.parse(localStorage.user)
+
     const handleDelete = () => {
-
-        // apiCalls.deleteSavedScholarship(user.id, props.id)
-        //     .then(() => removeSaved(props.id))
-        //     .catch(err => console.log(err))
-
-        dispatch(deleteSaved(props))
+        apiCalls.deleteSavedScholarship(user.id, props.id)
+            .then((data) => {
+              console.log("DELETE CONSOLE LOG:", data)
+              dispatch(deleteSaved(props))
+            })
+            .catch(err => console.log(err))
     }
 
     return (
