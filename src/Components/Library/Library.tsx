@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import './Library.css';
 import Header from "../Header/Header";
 import Scholarship from "../Scholarship/Scholarship";
-import { useAppSelector } from '../../app/hooks';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { stat } from "fs/promises";
 import Saved from "../Saved/Saved";
+import { setScholarships } from "../../slices/scholarshipsSlice";
 
 interface LibraryProps {
     card: string
@@ -35,6 +36,17 @@ const Library = (props: LibraryProps) => {
 
     const {filtered} = useAppSelector(state => state.scholarships)
     const {saved} = useAppSelector(state => state.saved)
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        if (localStorage.getItem('filtered') !== null && filtered.length === 0) {
+            const storedFiltered = JSON.parse(localStorage.getItem('filtered') as string);
+            dispatch(setScholarships(storedFiltered));
+        }
+    }, []);
+
+
+
 
     const scholarshipCards = filtered?.map(scholarship => <Scholarship key={scholarship.id} {...scholarship} type={props.card}/>)
     const savedCards = saved?.map(scholarship => <Saved key={scholarship.id} {...scholarship} type={props.card}/>)

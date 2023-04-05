@@ -111,6 +111,7 @@ const Form = () => {
                 console.log("scholarships data from the form fetch", data.data)
                 dispatch(setScholarships(data.data))
                 resetForm()
+                window.localStorage.setItem('filtered', JSON.stringify(data.data))
             })
             let savedUrl = `https://grant-guru-be.herokuapp.com/api/v1/users/${user.id}/favorites/`
             console.log("savedUrl", savedUrl)
