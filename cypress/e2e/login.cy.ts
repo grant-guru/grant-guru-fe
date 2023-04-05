@@ -16,11 +16,11 @@ describe("Login view", () => {
   });
 
   it("displays user cards", () => {
-    cy.get(".user-cards-container .user-card-container").should("have.length", 8);
+    cy.get(".user-card-container").should("have.length", 8);
   });
 
   it("displays correct user card data", () => {
-    cy.get(".user-cards-container .user-card-container").first().within(() => {
+    cy.get(".user-cards-container").first().within(() => {
       cy.get("img").should("have.attr", "src", "https://media.licdn.com/dms/image/D5635AQHEnwpJLXt26Q/profile-framedphoto-shrink_800_800/0/1678064386468?e=1680879600&v=beta&t=p8ZKUqplSskK5g-2phNbRo1UgXLdLMAZ0X_lmdowZfs");
       cy.get("h2").contains("Drew Layton");
     });
