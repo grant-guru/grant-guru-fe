@@ -99,15 +99,17 @@ const Form = () => {
     };
 
     const fetchFormData = () => {
-        let url = createUrlWithQueryParams().toString()
-        apiCalls.getScholarships(url)
+        let scholarshipsUrl = createUrlWithQueryParams().toString()
+        console.log("scholarshipsUrl", scholarshipsUrl)
+        apiCalls.getScholarships(scholarshipsUrl)
             .then(data => {
                 console.log("scholarships data from the form fetch", data.data)
                 dispatch(setScholarships(data.data))
                 resetForm()
             })
-        console.log("user inside of the form fetch right before interpolation", user)
-        apiCalls.getSaved(`https://grant-guru-be.herokuapp.com/api/v1/users/${user.id}/favorites/`)
+            let savedUrl = `https://grant-guru-be.herokuapp.com/api/v1/users/${user.id}/favorites/`
+            console.log("savedUrl", savedUrl)
+        apiCalls.getSaved(savedUrl)
             .then(data => {
                 dispatch(setSaved(data.data))
             })
