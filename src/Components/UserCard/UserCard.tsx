@@ -20,21 +20,27 @@ const UserCard = (props: UserCardProps) => {
 
     const handleClick = (e: any) => {
         e.preventDefault();
-        console.log('userID: e.t.id', e.target.id)
 
         const userID = e.target.id
-        //change deployed url to url
-        const deployedUrl =`https://grant-guru-be.herokuapp.com/api/v1/users/${userID}/`
-        console.log("deployed url",deployedUrl)
-        const url = `https://college-fund-mock-data-api.herokuapp.com/user`
+
+        const url = `https://grant-guru-be.herokuapp.com/api/v1/users/${userID}/`
         fetch(url)
         .then(response => response.json())
         .then(data => {
-            dispatch(setUser(data.data))
-            // console.log("this is the fetch data",data.data)
+            const cleanUserData = {
+                id: data.data.id,
+                type: data.data.type,
+                attributes: {
+                    first_name: data.data.attributes.first_name,
+                    last_name: data.data.attributes.last_name,
+                    image_url: data.data.attributes.image_url
+                }
+            }
+            dispatch(setUser(cleanUserData))
+
             history.push('/form')
             const user = data.data 
-            // console.log("here is user from login fetch",user)
+
             window.localStorage.setItem('user', JSON.stringify(user))
         })
         .catch(error => console.log(error))
