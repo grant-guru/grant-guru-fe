@@ -36,7 +36,7 @@ const UserCard = (props: UserCardProps) => {
                     image_url: data.data.attributes.image_url
                 }
             }
-            dispatch(setUser(data.data))
+            dispatch(setUser(cleanUserData))
 
             history.push('/form')
             const user = data.data 
