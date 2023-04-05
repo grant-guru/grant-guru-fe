@@ -19,14 +19,16 @@ const Header: React.FC = () => {
     return (
         <div className='header'>
             <div className='user'>
-                <img src={user.attributes.image_url} />
-                <h1>Welcome {user.attributes.first_name}!</h1>
+                <Link to='/form'>
+                    <img src={user.attributes.image_url} />
+                    <h1>Welcome {user.attributes.first_name}!</h1>
+                </Link>
             </div>
             <nav>
-                <Link to='/form'>Form</Link>
-                <Link className="saves" to='/saved'>Saves</Link>
-                <Link to='/scholarships'>Scholarships</Link>
-                <Link to='/'>LogOut</Link>
+                <Link className="form-link" to='/form'>Form</Link>
+                <Link className="saved" to='/saved'>Saved</Link>
+                <Link className="scholarships-link" to='/scholarships'>Scholarships</Link>
+                <Link className="logout-link" to='/'>LogOut</Link>
             </nav>
         </div>
     );

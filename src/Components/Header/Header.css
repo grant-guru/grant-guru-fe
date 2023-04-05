@@ -26,3 +26,25 @@
     margin-right: 2px;
     margin-bottom: 1rem;
   }
+
+  .form-link, .saved, .scholarships-link, .logout-link{
+    background-color: lightgrey;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .form-link:hover,.saved:hover, .scholarships-link:hover, .logout-link:hover{
+    background-color: lightsteelblue;
+}
+
+@media only screen and (min-width: 400px) and (max-width: 1000px) {
+  nav{
+    display: flex;
+    flex-direction: column;
+  }
+  
+}
