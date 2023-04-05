@@ -84,7 +84,7 @@ const Login = () => {
         <div className="login-container">
             <div className="welcome-login">
                 <h1>Welcome to Grant Guru!</h1>
-                <h2>Choose Your Profile</h2>
+                <h2 className="p-tag">Choose Your Profile</h2>
             </div>
             <div className="user-cards-container">
                 {UserCards}

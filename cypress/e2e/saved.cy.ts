@@ -7,7 +7,7 @@ describe('Library and Saved components', () => {
     });
     cy.get(".user-card-container").first().click();
 
-    cy.intercept("GET", "https://grant-guru-be.herokuapp.com/api/v1/scholarships?location=AL&educationLevel=high-school&gender=true&ethnicity=Asian", { fixture: 'scholarships.json'});
+    cy.intercept("GET", "https://grant-guru-be.herokuapp.com/api/v1/scholarships?state=AL&education=high-school&lgbt=True&ethnicity=Asian", { fixture: 'scholarships.json'});
     cy.intercept("GET", "https://grant-guru-be.herokuapp.com/api/v1/users/1/favorites/", { fixture: 'saved.json'});
     
     cy.get("select#state-selector").select("AL");
@@ -17,7 +17,7 @@ describe('Library and Saved components', () => {
 
     cy.get("button.form-submit").click();
 
-    cy.get(".saves").click();
+    cy.get(".saved").click();
   });
 
   it('should display scholarship cards', () => {
@@ -25,6 +25,11 @@ describe('Library and Saved components', () => {
   });
 
   it('should be able to remove a scholarship', () => {
+    cy.intercept('DELETE', 'https://grant-guru-be.herokuapp.com/api/v1/users/1/scholarships/6', {
+      statusCode: 200,
+      body: { message: 'Scholarship removed from favorites' },
+    }).as('deleteRequest');
+
     cy.get('.Library').children().first().find('button').click();
     cy.get('.Saved').should('have.length', 2); 
   });
