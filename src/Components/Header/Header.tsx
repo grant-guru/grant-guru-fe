@@ -20,7 +20,7 @@ const Header: React.FC = () => {
         <div className='header'>
             <div className='user'>
                 <Link to='/form'>
-                    <img src={user.attributes.image_url} />
+                    <img src={user.attributes.image_url} alt="user picture"/>
                     <h2>Welcome {user.attributes.first_name}!</h2>
                 </Link>
             </div>
