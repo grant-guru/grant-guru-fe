@@ -1,3 +1,5 @@
+
+const baseUrl = "https://grant-guru-be.herokuapp.com/"
 export const apiCalls = {
     
     getScholarships (url :string) {
@@ -26,7 +28,7 @@ export const apiCalls = {
     },
     addSavedScholarship (userID: string, scholarshipID: string) {
         return (
-            fetch(`/api/v1/users/${userID}/scholarships/${scholarshipID}`, {
+            fetch(`${baseUrl}api/v1/users/${userID}/scholarships/${scholarshipID}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -42,7 +44,7 @@ export const apiCalls = {
     },
     deleteSavedScholarship (userID: string, scholarshipID: string) {
         return (
-            fetch(`/api/v1/users/${userID}/scholarships/${scholarshipID}`, {
+            fetch(`${baseUrl}api/v1/users/${userID}/scholarships/${scholarshipID}`, {
                 method: 'DELETE',
                 headers: {
                   'Content-Type': 'application/json'
