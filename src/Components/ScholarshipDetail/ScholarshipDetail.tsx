@@ -56,7 +56,7 @@ const ScholarshipDetail: React.FC<DetailProps> = (props) => {
             <h2> ${selectedScholarship?.attributes.amount} </h2>
             <p> {selectedScholarship?.attributes.description} </p>
             <h4> <label>Deadline for submission:</label><br/>{selectedScholarship?.attributes.deadline} </h4>
-            <button className="scholarship-button" onClick={() => handleAdd()} style={{ backgroundColor: isSaved ? "red" : "green"}}>{isSaved ? "Remove from Saved" : "Save this Scholarship"}</button>
+            <button className="scholarship-button" onClick={() => handleAdd()} style={{ backgroundColor: isSaved ? "red" : "#006c67ac"}}>{isSaved ? "Remove from Saved" : "Save this Scholarship"}</button>
           </div>
         </section>
       </div>
