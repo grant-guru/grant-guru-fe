@@ -62,7 +62,7 @@ const Scholarship = (props: CardProps) => {
                 <h2 className="scholarship-title">{props.attributes.title}</h2>
                 <p className="scholarship-award">Award Amount: ${parseFloat(props.attributes.amount).toLocaleString("en-US")}</p>
             </Link>
-            <button className="scholarship-button" onClick={() => handleClick()} style={{ backgroundColor: isSaved ? "red" : "green"}}>{isSaved ? "Remove from Saved" : "Save this Scholarship"}</button>
+            <button className="scholarship-button" onClick={() => handleClick()} style={{ backgroundColor: isSaved ? "red" : "#006c67ac"}}>{isSaved ? "Remove from Saved" : "Save this Scholarship"}</button>
         </div>
     )
 }
