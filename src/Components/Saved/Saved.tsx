@@ -51,24 +51,25 @@ interface Scholarship {
 const Saved = (props: CardProps) => {
 
     const dispatch = useAppDispatch()
-    
+    const user = JSON.parse(localStorage.user)
+
     const handleDelete = () => {
-
-        // apiCalls.deleteSavedScholarship(user.id, props.id)
-        //     .then(() => removeSaved(props.id))
-        //     .catch(err => console.log(err))
-
-        dispatch(deleteSaved(props))
+        apiCalls.deleteSavedScholarship(user.id, props.id)
+            .then((data) => {
+              console.log("DELETE CONSOLE LOG:", data)
+              dispatch(deleteSaved(props))
+            })
+            .catch(err => console.log(err))
     }
 
     return (
         <div className="Saved">
             <div className="card-image">
-                <img src={props.attributes.image_url} alt={props.attributes.title} />
+                <img src={props.attributes?.image_url} alt={props.attributes?.title} />
             </div>
             <Link to={`/scholarship/${props.id}`}>
-                <h2>{props.attributes.title}</h2>
-                <p>Award Amount: ${parseFloat(props.attributes.amount).toLocaleString("en-US")}</p>
+                <h2>{props.attributes?.title}</h2>
+                <p>Award Amount: ${parseFloat(props.attributes?.amount).toLocaleString("en-US")}</p>
             </Link>
             <button onClick={() => handleDelete()}>Remove from Saved</button>
         </div>

@@ -6,12 +6,25 @@
   width: 100%;
   padding: 2rem;
   box-sizing: border-box;
+  height: 100vh;
+}
+.welcome-login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 14vh;
+  width:35vw;
+  margin-bottom: 3vh;
+  border-radius: 5rem;
+  background-color: #BACDB0;
 }
 
 .login-container h1 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
 }
+
 
 .user-cards-container {
   display: grid;
@@ -21,6 +34,11 @@
   align-items: center;
   padding: 2rem;
   box-sizing: border-box;
+  background-color: #729b79c6;
+  border-radius: 0.5rem;
+  -webkit-box-shadow: 10px 14px 33px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 14px 33px 1px rgba(0,0,0,0.75);
+  box-shadow: 10px 14px 33px 1px rgba(0,0,0,0.75);
 }
 
 @media screen and (max-width: 600px) {

@@ -30,4 +30,3 @@ describe("should navigate to scholarships page on form submit", () => {
     cy.get('.Library > :nth-child(4)').should('be.visible')
   });
 })
-
