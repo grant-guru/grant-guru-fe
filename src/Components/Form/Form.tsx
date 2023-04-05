@@ -86,11 +86,16 @@ const Form = () => {
         const url = new URL(baseUrl);
         const queryParams = new URLSearchParams();
 
-        if (form.location) queryParams.append("location", form.location);
-        if (form.educationLevel) queryParams.append("educationLevel", form.educationLevel);
-        if (form.gender) queryParams.append("gender", form.gender);
-        if (form.veteranStatus !== null) queryParams.append("veteranStatus", form.veteranStatus);
-        if (form.immigrantStatus !== null) queryParams.append("immigrantStatus", form.immigrantStatus);
+        const changeFirstLetterToUpperCase = (boolean: boolean) => {
+            const string = boolean.toString();
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        };
+
+        if (form.location) queryParams.append("state", form.location);
+        if (form.educationLevel) queryParams.append("education", form.educationLevel);
+        if (form.gender) queryParams.append("lgbt", changeFirstLetterToUpperCase(form.gender));
+        if (form.veteranStatus !== null) queryParams.append("veteran", changeFirstLetterToUpperCase(form.veteranStatus));
+        if (form.immigrantStatus !== null) queryParams.append("immigrant", changeFirstLetterToUpperCase(form.immigrantStatus));
         if (form.ethnicity.length > 0) queryParams.append("ethnicity", form.ethnicity.join(','));
 
         url.search = queryParams.toString();
@@ -168,7 +173,7 @@ const Form = () => {
                     </section>
                     <h2 className="form-titles">Military Status:</h2>
                     <section className="military-form">
-                        <p>Are you a military Veteran?</p>
+                        <p>Are you a military veteran?</p>
                         <label>
                             <input
                                 type="radio"
@@ -176,7 +181,7 @@ const Form = () => {
                                 value="true"
                                 checked={form.veteranStatus === true}
                                 onChange={() => setForm({ ...form, veteranStatus: true })}
-                            /> True
+                            /> Yes
                         </label>
                         <br />
                         <label>
@@ -186,10 +191,11 @@ const Form = () => {
                                 value="false"
                                 checked={form.veteranStatus === false}
                                 onChange={() => setForm({ ...form, veteranStatus: false })}
-                            /> False
+                            /> No
                         </label>
                     </section>
                     <h2 className="form-titles">Immigrant Status:</h2>
+                    <p>Are you an immigrant to the US?</p>
                     <section className="button-residency-container">
                         <section className="residency-form">
                             <label>
@@ -199,7 +205,7 @@ const Form = () => {
                                     value="true"
                                     checked={form.immigrantStatus === true}
                                     onChange={() => setForm({ ...form, immigrantStatus: true })}
-                                /> True
+                                /> Yes
                             </label>
                             <br />
                             <label>
@@ -209,7 +215,7 @@ const Form = () => {
                                     value="false"
                                     checked={form.immigrantStatus === false}
                                     onChange={() => setForm({ ...form, immigrantStatus: false })}
-                                /> False
+                                /> No
                             </label>
                         </section>
                         <Link to={'/scholarships'}><button className="form-submit" onClick={() => fetchFormData()}>Form submit</button>
