@@ -1,10 +1,10 @@
 describe('Header component', () => {
   beforeEach(() => {
-    cy.intercept("GET", "https://college-fund-mock-data-api.herokuapp.com/user", {
+    cy.intercept("GET", "https://grant-guru-be.herokuapp.com/api/v1/users/1/", {
       fixture: "user.json",
     });
 
-    cy.visit('http://localhost:3000/')
+    cy.visit('https://grant-guru-fe.vercel.app/')
     cy.get(".user-card-container").first().click();
   });
 
