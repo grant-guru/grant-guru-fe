@@ -2,15 +2,22 @@
 
 describe("should navigate to scholarships page on form submit", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/");
-    cy.intercept("GET", "https://college-fund-mock-data-api.herokuapp.com/user", {
+    cy.visit("https://grant-guru-fe.vercel.app/");
+    cy.intercept("GET", "https://grant-guru-be.herokuapp.com/api/v1/users/1/", {
       fixture: "user.json",
     });
     cy.get(".user-card-container").first().click();
 
-    cy.intercept("GET", "https://college-fund-mock-data-api.herokuapp.com/scholarships", { fixture: 'scholarships.json'});
-    cy.intercept("GET", "https://college-fund-mock-data-api.herokuapp.com/favorites", { fixture: 'saved.json'});
+    cy.intercept("GET", "https://grant-guru-be.herokuapp.com/api/v1/scholarships?location=AL&educationLevel=high-school&gender=true&ethnicity=Asian", { fixture: 'scholarships.json'});
+    cy.intercept("GET", "https://grant-guru-be.herokuapp.com/api/v1/users/1/favorites/", { fixture: 'saved.json'});
+    
+    cy.get("select#state-selector").select("AL");
+    cy.get("select#education-level").select("High School");
+    cy.get("select#gender-identity").select("True");
+    cy.get("input[type=checkbox][name='Asian']").check().should("be.checked");
+
     cy.get("button.form-submit").click();
+    
     cy.location("pathname").should("eq", "/scholarships");
   });
   
