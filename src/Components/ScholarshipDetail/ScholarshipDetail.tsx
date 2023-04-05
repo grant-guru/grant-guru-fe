@@ -22,17 +22,26 @@ const ScholarshipDetail: React.FC<DetailProps> = (props) => {
   useEffect(() => {
   }, [saved])
 
+  const user = JSON.parse(localStorage.user)
+
   const handleAdd = () => {
     if (!isSaved) {
-      dispatch(addSaved(selectedScholarship));
       setSaved(true);
+      apiCalls.addSavedScholarship(user.id, props.id)
+          .then((data)=> {
+            console.log("POST CONSOLE LOG:", data)
+            dispatch(addSaved(selectedScholarship))
+          })
+          .catch(err => console.log(err))
     } else {
-      dispatch(deleteSaved(selectedScholarship));
-      setSaved(false);
+       apiCalls.deleteSavedScholarship(user.id, props.id)
+            .then((data) => {
+              console.log("DELETE CONSOLE LOG:", data)
+              dispatch(deleteSaved(selectedScholarship))
+              setSaved(false);
+            })
+            .catch(err => console.log(err))
     }
-    // apiCalls.addSavedScholarship(user.id, props.id)
-    //     .then(json => console.log(json))
-    //     .catch(err => console.log(err))
   }
 
   return (
