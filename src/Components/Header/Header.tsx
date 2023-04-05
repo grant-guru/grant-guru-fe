@@ -21,9 +21,10 @@ const Header: React.FC = () => {
             <div className='user'>
                 <Link to='/form'>
                     <img src={user.attributes.image_url} />
-                    <h1>Welcome {user.attributes.first_name}!</h1>
+                    <h2>Welcome {user.attributes.first_name}!</h2>
                 </Link>
             </div>
+            <h1>Grant Guru</h1>
             <nav>
                 <Link className="form-link" to='/form'>Form</Link>
                 <Link className="saved" to='/saved'>Saved</Link>
