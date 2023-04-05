@@ -30,7 +30,7 @@ const Scholarship = (props: CardProps) => {
 
     const {saved} = useAppSelector(state => state.saved)
     const dispatch = useAppDispatch()
-    const [isSaved, setSaved ] = useState(saved.some(save => save.id === props.id))
+    const [isSaved, setSaved ] = useState(saved?.some(save => save.id === props.id))
 
     const handleAdd = () => {
         if(!isSaved) {

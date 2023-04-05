@@ -18,32 +18,23 @@ const UserCard = (props: UserCardProps) => {
     const dispatch = useAppDispatch()
     const history = useHistory()
 
-    const createUrlWithQueryParams = (e: any) => {
-        const baseUrl = "https://college-fund-mock-data-api.herokuapp.com/user";
-        const url = new URL(baseUrl);
-        const queryParams = new URLSearchParams();
-    
-        queryParams.append("userid", e.target.id);
-    
-        url.search = queryParams.toString();
-    
-        return url;
-    };
-
     const handleClick = (e: any) => {
         e.preventDefault();
-        console.log("user query url",createUrlWithQueryParams(e).toString())
-        console.log('clicked')
         console.log('userID: e.t.id', e.target.id)
+
         const userID = e.target.id
+        //change deployed url to url
+        const deployedUrl =`https://grant-guru-be.herokuapp.com/api/v1/users/${userID}/`
+        console.log("deployed url",deployedUrl)
         const url = `https://college-fund-mock-data-api.herokuapp.com/user`
         fetch(url)
         .then(response => response.json())
         .then(data => {
-            dispatch(setUser(data))
-            console.log("this is the fetch data",data.data)
+            dispatch(setUser(data.data))
+            // console.log("this is the fetch data",data.data)
             history.push('/form')
             const user = data.data 
+            // console.log("here is user from login fetch",user)
             window.localStorage.setItem('user', JSON.stringify(user))
         })
         .catch(error => console.log(error))

@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './Form.css';
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setScholarships } from "../../slices/scholarshipsSlice";
 import { setSaved } from "../../slices/savedSlice";
-
 import usStates from "../../data/usStates";
 import { apiCalls } from "../../apiCalls";
 
 const Form = () => {
+    const { user } = useAppSelector(state => state.user)
 
+    useEffect(() => {
+    }, [user])
     const [form, setForm] = useState<any>({
         location: "",
         educationLevel: "",
@@ -80,45 +82,34 @@ const Form = () => {
     };
 
     const createUrlWithQueryParams = () => {
-        const baseUrl = "https://college-fund-mock-data-api.herokuapp.com/scholarships";
+        const baseUrl = "https://grant-guru-be.herokuapp.com/api/v1/scholarships";
         const url = new URL(baseUrl);
         const queryParams = new URLSearchParams();
-    
+
         if (form.location) queryParams.append("location", form.location);
         if (form.educationLevel) queryParams.append("educationLevel", form.educationLevel);
         if (form.gender) queryParams.append("gender", form.gender);
         if (form.veteranStatus !== null) queryParams.append("veteranStatus", form.veteranStatus);
         if (form.immigrantStatus !== null) queryParams.append("immigrantStatus", form.immigrantStatus);
         if (form.ethnicity.length > 0) queryParams.append("ethnicity", form.ethnicity.join(','));
-    
+
         url.search = queryParams.toString();
-    
+
         return url;
     };
-    
-    // const fetchFormData = () => {
-    //     apiCalls.getScholarships()
-    //         .then(data => {
-    //             dispatch(setScholarships(data.data))
-    //             let scholarships = (data.data)
-    //             window.localStorage.setItem('scholarships', JSON.stringify(scholarships))
-    //             resetForm()
-    //         })
 
-    //     apiCalls.getSaved() 
-    //         .then(data => {
-    //             let saved = (data.data)
-    //             window.localStorage.setItem('saved', JSON.stringify(saved))
-    //         })
-    // }
     const fetchFormData = () => {
-        apiCalls.getScholarships()
+        let scholarshipsUrl = createUrlWithQueryParams().toString()
+        console.log("scholarshipsUrl", scholarshipsUrl)
+        apiCalls.getScholarships(scholarshipsUrl)
             .then(data => {
+                console.log("scholarships data from the form fetch", data.data)
                 dispatch(setScholarships(data.data))
                 resetForm()
             })
-
-        apiCalls.getSaved() 
+            let savedUrl = `https://grant-guru-be.herokuapp.com/api/v1/users/${user.id}/favorites/`
+            console.log("savedUrl", savedUrl)
+        apiCalls.getSaved(savedUrl)
             .then(data => {
                 dispatch(setSaved(data.data))
             })
