@@ -1,6 +1,6 @@
 describe("should navigate to scholarships page on form submit", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/");
+    cy.visit("https://grant-guru-fe.vercel.app/");
     cy.intercept("GET", "https://college-fund-mock-data-api.herokuapp.com/user", {
       fixture: "user.json",
     });
@@ -26,7 +26,8 @@ describe("should navigate to scholarships page on form submit", () => {
   })
 
   it("Should be able to add to saved array", () => {
-    cy.get('.saves').click()
+    cy.get('.saved').click()
     cy.get('.Library > :nth-child(4)').should('be.visible')
   });
 })
+
