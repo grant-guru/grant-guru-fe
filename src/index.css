@@ -5,8 +5,25 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("/Users/reidpoole/grant-guru/src/bg_bggenerator_com (3).jpg");
-  
+ background-image: linear-gradient(
+  70deg,
+  hsl(0deg 41% 27%) 0%,
+  hsl(2deg 46% 28%) 18%,
+  hsl(4deg 51% 29%) 26%,
+  hsl(6deg 56% 30%) 33%,
+  hsl(9deg 61% 31%) 39%,
+  hsl(11deg 66% 32%) 44%,
+  hsl(13deg 71% 33%) 50%,
+  hsl(15deg 76% 34%) 56%,
+  hsl(18deg 80% 35%) 61%,
+  hsl(19deg 85% 36%) 67%,
+  hsl(22deg 91% 37%) 74%,
+  hsl(24deg 95% 38%) 82%,
+  hsl(26deg 100% 39%) 100%
+);
+background-repeat: no-repeat;
+background-position: center;
+height: 100vh;
 }
 
 code {
