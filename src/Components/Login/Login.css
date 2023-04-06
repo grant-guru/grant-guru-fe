@@ -6,7 +6,6 @@
   width: 100%;
   padding: 2rem;
   box-sizing: border-box;
-  /* height: 100vh; */
   min-height: 100vh;
 }
 .welcome-login{
@@ -20,9 +19,9 @@
   border-radius: 5rem;
   background-color: #BACDB0;
   padding: 1rem; 
-  box-sizing: border-box; /* Make sure the padding is included in the element's dimensions */
-  overflow-wrap: break-word; /* Break long words to a new line */
-  word-wrap: break-word; /* Legacy property for older browsers */
+  box-sizing: border-box;
+  overflow-wrap: break-word; 
+  word-wrap: break-word; 
   overflow: hidden; 
   font-size: 2vh;
   -webkit-box-shadow: 10px 14px 33px 1px rgba(0,0,0,0.75);

@@ -9,13 +9,13 @@ interface User {
     image_url: string;
   }
 }
+
 export interface UserState {
   user: User
 }
 
 const initialState: UserState = {
   user: {
-
     id: "",
     type: "",
     attributes: {
