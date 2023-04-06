@@ -5,10 +5,9 @@ import Header from '../Header/Header';
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setScholarships } from "../../slices/scholarshipsSlice";
 import { setSaved } from "../../slices/savedSlice";
-import usStates from "../../data/usStates";
+import { usStates } from "../../data/data";
 import { apiCalls } from "../../apiCalls";
 import Error from "../Error/Error";
-import { error } from "console";
 import { setScholarshipsError } from "../../slices/errorSlice";
 import { setSavedError } from "../../slices/errorSlice";
 
@@ -121,17 +120,13 @@ const Form = () => {
 
     const fetchFormData = () => {
         let scholarshipsUrl = createUrlWithQueryParams().toString()
-        console.log("scholarshipsUrl", scholarshipsUrl)
+
         apiCalls.getScholarships(scholarshipsUrl)
             .then(data => {
-                console.log("scholarships data from the form fetch", data.data)
                 dispatch(setScholarships(data.data))
                 resetForm()
             })
             .catch(error => dispatch(setScholarshipsError(error.message)))
-
-            // let savedUrl = `https://grant-guru-be.herokuapp.com/api/v1/users/${user.id}/favorites/`
-            // console.log("savedUrl", savedUrl)
 
         apiCalls.getSaved(user.id)
             .then(data => {

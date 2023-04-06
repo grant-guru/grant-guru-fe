@@ -24,9 +24,8 @@ export const savedSlice = createSlice({
     deleteSaved: (state, action: PayloadAction <any>) => {
         //update the types here for the payload
       state.saved = state.saved.filter((scholarship) => scholarship.id !== action.payload.id);
-    }
+    },
   }
-
 });
 
 export const { setSaved, addSaved, deleteSaved } = savedSlice.actions

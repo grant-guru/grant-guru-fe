@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom';
 import Form from '../Form/Form';
 import Login from '../Login/Login';
 import Library from '../Library/Library';
-import Saved from '../Saved/Saved';
 import ScholarshipDetail from '../ScholarshipDetail/ScholarshipDetail'
 
 function App() {

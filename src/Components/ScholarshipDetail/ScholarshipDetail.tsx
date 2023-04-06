@@ -8,17 +8,24 @@ import { setAddSaveError, setDeleteSaveError } from "../../slices/errorSlice";
 
 interface DetailProps {
   id: string;
-//   image_url: string;
 }
 
 const ScholarshipDetail: React.FC<DetailProps> = (props) => {
 
-  const { filtered } = useAppSelector(state => state.scholarships);
-  const selectedScholarship = filtered.find(scholarship => scholarship.id === props.id);
-
   const { saved } = useAppSelector(state => state.saved);
+
   const dispatch = useAppDispatch();
-  const [isSaved, setSaved] = useState(saved?.some(save => save.id === props.id));
+
+  const [isSaved, setIsSaved] = useState(saved?.some(save => save.id === props.id));
+  const [allScholarships, setAllSchoolarship] = useState<Array<any>>([])
+  
+  const selectedScholarship = allScholarships?.find(scholarship => scholarship.id === props.id);
+
+  useEffect(() => {
+    apiCalls.getScholarships("https://grant-guru-be.herokuapp.com/api/v1/scholarships")
+    .then((data) => setAllSchoolarship(data.data))
+    .catch(()=> console.error("Error Fetchng All Scholarships"))
+  }, [])
 
   useEffect(() => {
   }, [saved])
@@ -27,19 +34,17 @@ const ScholarshipDetail: React.FC<DetailProps> = (props) => {
 
   const handleAdd = () => {
     if (!isSaved) {
-      setSaved(true);
+      setIsSaved(true);
       apiCalls.addSavedScholarship(user.id, props.id)
-          .then((data)=> {
-            console.log("POST CONSOLE LOG:", data)
+          .then(()=> {
             dispatch(addSaved(selectedScholarship))
           })
           .catch(error => dispatch(setAddSaveError(error.message)))
     } else {
        apiCalls.deleteSavedScholarship(user.id, props.id)
-            .then((data) => {
-              console.log("DELETE CONSOLE LOG:", data)
+            .then(() => {
               dispatch(deleteSaved(selectedScholarship))
-              setSaved(false);
+              setIsSaved(false);
             })
             .catch(error => dispatch(setDeleteSaveError(error.message)))
     }

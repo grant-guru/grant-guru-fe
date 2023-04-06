@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect} from "react";
 import './Header.css';
 import { Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import { setUser } from "../../slices/userSlice";
+import { resetScholarships } from "../../slices/scholarshipsSlice";
 
 const Header: React.FC = () => {
 
     const { user } = useAppSelector(state => state.user)
+
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -14,12 +16,17 @@ const Header: React.FC = () => {
             const storedUser = JSON.parse(localStorage.getItem('user') as string);
             dispatch(setUser(storedUser));
         }
-    }, []);
+    }, [dispatch, user.id]);
+
+    const logOut = () => {
+        dispatch(resetScholarships())
+    }
+    
     return (
         <div className='header'>
             <div className='user'>
                 <Link to='/form'>
-                    <img src={user.attributes.image_url} alt="user picture"/>
+                    <img src={user.attributes.image_url} alt="user"/>
                     <h2>Welcome {user.attributes.first_name}!</h2>
                 </Link>
             </div>
@@ -28,7 +35,7 @@ const Header: React.FC = () => {
                 <Link className="form-link" to='/form'>Form</Link>
                 <Link className="saved" to='/saved'>Saved</Link>
                 <Link className="scholarships-link" to='/scholarships'>Scholarships</Link>
-                <Link className="logout-link" to='/'>LogOut</Link>
+                <Link className="logout-link" to='/' onClick={() => logOut()}>LogOut</Link>
             </nav>
         </div>
     );

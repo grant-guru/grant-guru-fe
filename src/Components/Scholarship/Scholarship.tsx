@@ -38,15 +38,13 @@ const Scholarship = (props: CardProps) => {
         if (!isSaved) {
       setSaved(true);
       apiCalls.addSavedScholarship(user.id, props.id)
-          .then((data)=> {
-            console.log("POST CONSOLE LOG:", data)
+          .then(()=> {
             dispatch(addSaved(props))
           })
           .catch(error => dispatch(setAddSaveError(error.message)))
     } else {
        apiCalls.deleteSavedScholarship(user.id, props.id)
-            .then((data) => {
-              console.log("DELETE CONSOLE LOG:", data)
+            .then(() => {
               dispatch(deleteSaved(props))
               setSaved(false);
             })

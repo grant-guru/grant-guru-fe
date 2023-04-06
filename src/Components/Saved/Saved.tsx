@@ -1,34 +1,12 @@
 import React from "react";
 import './Saved.css';
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { setSaved, deleteSaved } from "../../slices/savedSlice";
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { deleteSaved } from "../../slices/savedSlice";
+import { useAppDispatch } from '../../app/hooks';
 import { apiCalls } from "../../apiCalls";
 import { setDeleteSaveError } from "../../slices/errorSlice";
 
 interface CardProps {
-    id: string,
-    type: string,
-    attributes: {
-        title: string,
-        organization: string,
-        amount: string,
-        description: string,
-        deadline: string,
-        education: string,
-        state: string,
-        women: boolean,
-        lgbt: boolean,
-        ethnicity: Array<string>,
-        veteran: boolean,
-        immigrant: boolean,
-        url: string,
-        image_url: string
-    }
-}
-
-interface Scholarship {
     id: string,
     type: string,
     attributes: {
@@ -56,8 +34,7 @@ const Saved = (props: CardProps) => {
 
     const handleDelete = () => {
         apiCalls.deleteSavedScholarship(user.id, props.id)
-            .then((data) => {
-              console.log("DELETE CONSOLE LOG:", data)
+            .then(() => {
               dispatch(deleteSaved(props))
             })
             .catch(error => dispatch(setDeleteSaveError(error.message)))

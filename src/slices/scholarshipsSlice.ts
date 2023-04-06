@@ -37,12 +37,14 @@ export const scholarshipsSlice = createSlice({
   reducers: {
     setScholarships: (state, action: PayloadAction<Array<Scholarship>>) => {
         //update the types here for the payload
-
       state.filtered = action.payload;
-    }
+    },
+    resetScholarships: (state) => {
+            state.filtered = [];
+        },
   }
 });
 
-export const { setScholarships } = scholarshipsSlice.actions;
+export const { setScholarships, resetScholarships } = scholarshipsSlice.actions;
 
 export default scholarshipsSlice.reducer;
