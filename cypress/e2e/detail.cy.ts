@@ -24,9 +24,18 @@ describe("should navigate to scholarships page on form submit", () => {
   })
 
   it("Should be able to save button and the button character changes", () => {
+    cy.intercept('POST', 'https://grant-guru-be.herokuapp.com/api/v1/users/1/scholarship/2', {
+      statusCode: 201,
+      body: { message: 'Scholarship added to favorites' },
+    }).as('postRequest');
+    cy.intercept('DELETE', 'https://grant-guru-be.herokuapp.com/api/v1/users/1/favorites/2', {
+      statusCode: 200,
+      body: { message: 'Scholarship removed from favorites' },
+    }).as('deleteRequest');
+    
     cy.get('.scholarship-button').contains("Save this Scholarship").click()
     cy.get('.scholarship-button').contains("Remove from Saved").click()
-    cy.get('.scholarship-button').contains("Save this Scholarship").click()
+    cy.get('.scholarship-button').contains("Save this Scholarship")
   })
 
   it("Should be able to add to saved array", () => {
