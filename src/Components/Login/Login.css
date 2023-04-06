@@ -6,7 +6,8 @@
   width: 100%;
   padding: 2rem;
   box-sizing: border-box;
-  height: 100vh;
+  /* height: 100vh; */
+  min-height: 100vh;
 }
 .welcome-login{
   display: flex;
@@ -18,11 +19,17 @@
   margin-bottom: 3vh;
   border-radius: 5rem;
   background-color: #BACDB0;
+  padding: 1rem; 
+  box-sizing: border-box; /* Make sure the padding is included in the element's dimensions */
+  overflow-wrap: break-word; /* Break long words to a new line */
+  word-wrap: break-word; /* Legacy property for older browsers */
+  overflow: hidden; 
+  font-size: 2vh;
 }
 
 .login-container h1 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+  font-size: 4vh;
+  margin-bottom: 0.5rem;
 }
 
 
@@ -45,11 +52,19 @@
   .user-cards-container {
     grid-template-columns: repeat(1, 1fr);
   }
+  .welcome-login{
+  height: 30vh;
+  width:45vw;
+  }
 }
 
 @media screen and (min-width: 601px) and (max-width: 900px) {
   .user-cards-container {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .welcome-login{
+  height: 20vh;
+  width:47vw;
   }
 }
 
@@ -57,10 +72,18 @@
   .user-cards-container {
     grid-template-columns: repeat(4, 1fr);
   }
+  .welcome-login{
+  height: 20vh;
+  width:35vw;
+  }
 }
 
 @media screen and (min-width: 1201px) {
   .user-cards-container {
     grid-template-columns: repeat(4, 1fr);
+  }
+  .welcome-login{
+  height: 20vh;
+  width:35vw;
   }
 }

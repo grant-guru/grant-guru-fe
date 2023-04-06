@@ -15,7 +15,6 @@ const Header: React.FC = () => {
             dispatch(setUser(storedUser));
         }
     }, []);
-    
     return (
         <div className='header'>
             <div className='user'>
