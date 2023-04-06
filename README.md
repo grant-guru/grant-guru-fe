@@ -79,7 +79,7 @@ I hope you have fun using Grant Guru!
 ## Preview of App:
 [//]: <> (Provide ONE gif or screenshot of your application - choose the "coolest" piece of functionality to show off.)
 
-[Grant Guru](![Screen Recording - 6 April 2023](https://user-images.githubusercontent.com/111818942/230463892-75b499d4-e3a6-475a-b9df-89940440fc3e.gif)
+![Screen Recording - 6 April 2023](https://user-images.githubusercontent.com/111818942/230463892-75b499d4-e3a6-475a-b9df-89940440fc3e.gif)
 
 
 ---
