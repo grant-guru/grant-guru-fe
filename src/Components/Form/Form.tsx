@@ -7,9 +7,14 @@ import { setScholarships } from "../../slices/scholarshipsSlice";
 import { setSaved } from "../../slices/savedSlice";
 import usStates from "../../data/usStates";
 import { apiCalls } from "../../apiCalls";
+import Error from "../Error/Error";
+import { error } from "console";
+import { setScholarshipsError } from "../../slices/errorSlice";
+import { setSavedError } from "../../slices/errorSlice";
 
 const Form = () => {
     const { user } = useAppSelector(state => state.user)
+    const { userError } = useAppSelector(state => state.error.error)
 
     useEffect(() => {
     }, [user])
@@ -112,119 +117,129 @@ const Form = () => {
                 dispatch(setScholarships(data.data))
                 resetForm()
             })
+            .catch(error => dispatch(setScholarshipsError(error.message)))
+
             let savedUrl = `https://grant-guru-be.herokuapp.com/api/v1/users/${user.id}/favorites/`
             console.log("savedUrl", savedUrl)
+
         apiCalls.getSaved(savedUrl)
             .then(data => {
                 dispatch(setSaved(data.data))
             })
+            .catch(error => dispatch(setSavedError(error.message)))
     }
 
-    return (
-        <>
-            <Header />
-            <form className="user-form">
-                <section className="input-container">
-                    <label htmlFor="state-selector">State
-                        <select
-                            name="usStates"
-                            id="state-selector"
-                            value={form.location}
-                            onChange={(e) => handleSelectChange(e, "location")}
-                        >
-                            <option>select one ...</option>
-                            {usStates.map(({ value, label }) => (
-                                <option key={label} value={value}>{value}</option>
-                            ))}
-                        </select>
-                    </label>
-                    <label htmlFor="education-level">Education Level
-                        <select
-                            name="education-level"
-                            id="education-level"
-                            value={form.educationLevel}
-                            onChange={(e) => handleSelectChange(e, "educationLevel")}
-                        >
-                            <option value="blank">select one...</option>
-                            <option value="high-school">High School</option>
-                            <option value="undergraduate">Undergraduate</option>
-                            <option value="Graduate">Graduate</option>
-                            <option value="Trade-Technical">Trade/Technical</option>
-                        </select>
-                    </label>
-                    <label>
-                        LGBTQ+
-                        <select
-                            name="gender-identity"
-                            id="gender-identity"
-                            value={form.gender}
-                            onChange={(e) => handleSelectChange(e, "gender")}
-                        >
-                            <option value="blank">select one...</option>
-                            <option value="true">True</option>
-                            <option value="false">False</option>
-                        </select>
-                    </label>
-                </section>
-                <section className="bottom-half">
-                    <h2 className="form-titles">Ethnicity</h2>
-                    <section className="ethnicity-form">
-                        {renderEthnicityCheckboxes()}
-                    </section>
-                    <h2 className="form-titles">Military Status:</h2>
-                    <section className="military-form">
-                        <p>Are you a military veteran?</p>
-                        <label>
-                            <input
-                                type="radio"
-                                name="veteranStatus"
-                                value="true"
-                                checked={form.veteranStatus === true}
-                                onChange={() => setForm({ ...form, veteranStatus: true })}
-                            /> Yes
+    if (userError) {
+        return (
+            <Error errorMessage={userError}/>
+        )
+    } else {
+        return (
+            <>
+                <Header />
+                <form className="user-form">
+                    <section className="input-container">
+                        <label htmlFor="state-selector">State
+                            <select
+                                name="usStates"
+                                id="state-selector"
+                                value={form.location}
+                                onChange={(e) => handleSelectChange(e, "location")}
+                            >
+                                <option>select one ...</option>
+                                {usStates.map(({ value, label }) => (
+                                    <option key={label} value={value}>{value}</option>
+                                ))}
+                            </select>
                         </label>
-                        <br />
+                        <label htmlFor="education-level">Education Level
+                            <select
+                                name="education-level"
+                                id="education-level"
+                                value={form.educationLevel}
+                                onChange={(e) => handleSelectChange(e, "educationLevel")}
+                            >
+                                <option value="blank">select one...</option>
+                                <option value="high-school">High School</option>
+                                <option value="undergraduate">Undergraduate</option>
+                                <option value="Graduate">Graduate</option>
+                                <option value="Trade-Technical">Trade/Technical</option>
+                            </select>
+                        </label>
                         <label>
-                            <input
-                                type="radio"
-                                name="veteranStatus"
-                                value="false"
-                                checked={form.veteranStatus === false}
-                                onChange={() => setForm({ ...form, veteranStatus: false })}
-                            /> No
+                            LGBTQ+
+                            <select
+                                name="gender-identity"
+                                id="gender-identity"
+                                value={form.gender}
+                                onChange={(e) => handleSelectChange(e, "gender")}
+                            >
+                                <option value="blank">select one...</option>
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
                         </label>
                     </section>
-                    <h2 className="form-titles">Immigrant Status:</h2>
-                    <p>Are you an immigrant to the US?</p>
-                    <section className="button-residency-container">
-                        <section className="residency-form">
+                    <section className="bottom-half">
+                        <h2 className="form-titles">Ethnicity</h2>
+                        <section className="ethnicity-form">
+                            {renderEthnicityCheckboxes()}
+                        </section>
+                        <h2 className="form-titles">Military Status:</h2>
+                        <section className="military-form">
+                            <p>Are you a military veteran?</p>
                             <label>
                                 <input
                                     type="radio"
-                                    name="immigrantStatus"
+                                    name="veteranStatus"
                                     value="true"
-                                    checked={form.immigrantStatus === true}
-                                    onChange={() => setForm({ ...form, immigrantStatus: true })}
+                                    checked={form.veteranStatus === true}
+                                    onChange={() => setForm({ ...form, veteranStatus: true })}
                                 /> Yes
                             </label>
                             <br />
                             <label>
                                 <input
                                     type="radio"
-                                    name="immigrantStatus"
+                                    name="veteranStatus"
                                     value="false"
-                                    checked={form.immigrantStatus === false}
-                                    onChange={() => setForm({ ...form, immigrantStatus: false })}
+                                    checked={form.veteranStatus === false}
+                                    onChange={() => setForm({ ...form, veteranStatus: false })}
                                 /> No
                             </label>
                         </section>
-                        <Link to={'/scholarships'}><button className="form-submit" onClick={() => fetchFormData()}>Form submit</button>
-                        </Link>
+                        <h2 className="form-titles">Immigrant Status:</h2>
+                        <p>Are you an immigrant to the US?</p>
+                        <section className="button-residency-container">
+                            <section className="residency-form">
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="immigrantStatus"
+                                        value="true"
+                                        checked={form.immigrantStatus === true}
+                                        onChange={() => setForm({ ...form, immigrantStatus: true })}
+                                    /> Yes
+                                </label>
+                                <br />
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="immigrantStatus"
+                                        value="false"
+                                        checked={form.immigrantStatus === false}
+                                        onChange={() => setForm({ ...form, immigrantStatus: false })}
+                                    /> No
+                                </label>
+                            </section>
+                            <Link to={'/scholarships'}><button className="form-submit" onClick={() => fetchFormData()}>Form submit</button>
+                            </Link>
+                        </section>
                     </section>
-                </section>
-            </form>
-        </>
-    );
+                </form>
+            </>
+        );
+    }
 }
 
 export default Form

@@ -2,12 +2,14 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import savedReducer from '../slices/savedSlice';
 import userReducer from '../slices/userSlice';
 import scholarshipsReducer from '../slices/scholarshipsSlice';
+import errorReducer from '../slices/errorSlice';
 
 export const store = configureStore({
   reducer: {
     saved: savedReducer,
     user: userReducer,
-    scholarships: scholarshipsReducer
+    scholarships: scholarshipsReducer,
+    error: errorReducer 
   },
 });
 

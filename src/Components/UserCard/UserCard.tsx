@@ -3,6 +3,7 @@ import './UserCard.css';
 import { useAppDispatch } from "../../app/hooks"
 import { setUser } from "../../slices/userSlice";
 import { useHistory } from "react-router-dom";
+import { setUserError } from "../../slices/errorSlice";
 
 interface UserCardProps {
     id: string,
@@ -43,7 +44,7 @@ const UserCard = (props: UserCardProps) => {
 
             window.localStorage.setItem('user', JSON.stringify(user))
         })
-        .catch(error => console.log(error))
+        .catch(error => dispatch(setUserError(error.message)))
     }
 
     return(

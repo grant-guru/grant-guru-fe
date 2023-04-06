@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { addSaved, deleteSaved } from "../../slices/savedSlice";
 import { apiCalls } from "../../apiCalls";
+import { setAddSaveError, setDeleteSaveError } from "../../slices/errorSlice";
 
 interface CardProps {
     id: string,
@@ -41,7 +42,7 @@ const Scholarship = (props: CardProps) => {
             console.log("POST CONSOLE LOG:", data)
             dispatch(addSaved(props))
           })
-          .catch(err => console.log(err))
+          .catch(error => dispatch(setAddSaveError(error.message)))
     } else {
        apiCalls.deleteSavedScholarship(user.id, props.id)
             .then((data) => {
@@ -49,7 +50,7 @@ const Scholarship = (props: CardProps) => {
               dispatch(deleteSaved(props))
               setSaved(false);
             })
-            .catch(err => console.log(err))
+            .catch(error => dispatch(setDeleteSaveError(error.message)))
             }
         }
 
