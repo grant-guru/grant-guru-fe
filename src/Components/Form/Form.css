@@ -12,6 +12,9 @@ body {
   padding: 20px;
   background-color: #bacdb09b;
   border-radius: 5px;
+  -webkit-box-shadow: 10px 14px 33px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 14px 33px 1px rgba(0,0,0,0.75);
+  box-shadow: 10px 14px 33px 1px rgba(0,0,0,0.75);
 }
 
 .input-container {

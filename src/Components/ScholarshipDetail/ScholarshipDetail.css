@@ -15,8 +15,15 @@
     }
 
   .background-gradient {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     padding: 20px;
-    background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgba(255, 255, 255, .5));  
+    height: 50vh;
+    background-image: linear-gradient(to bottom, rgba(182, 161, 144, 0.776), rgba(0, 0, 0, 0.522));  
+    -webkit-box-shadow: 10px 14px 33px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 14px 33px 1px rgba(0,0,0,0.75);
+    box-shadow: 10px 14px 33px 1px rgba(0,0,0,0.75);
   }
 
   button {
