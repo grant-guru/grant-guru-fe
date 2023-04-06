@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe('Header component', () => {
   beforeEach(() => {
     cy.intercept("GET", "https://grant-guru-be.herokuapp.com/api/v1/users/1/", {
