@@ -12,7 +12,7 @@ describe("Login view", () => {
   });
 
   it("displays the correct header", () => {
-    cy.get(".login-container h1").contains("Choose Your Profile");
+    cy.get('h2').contains("Choose Your Profile");
   });
 
   it("displays user cards", () => {

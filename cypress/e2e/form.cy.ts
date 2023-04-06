@@ -2,12 +2,14 @@
 
 context("Form Component", () => {
   beforeEach(() => {
+    cy.intercept("GET", "https://grant-guru-be.herokuapp.com/api/v1/users/1/", { fixture: 'user.json'});
     cy.visit("https://grant-guru-fe.vercel.app/");
     cy.get(".user-card-container").first().click();
   });
 
   it("should render the form with all inputs and buttons", () => {
     cy.get(".user-form").within(() => {
+      
       cy.get("select#state-selector").should("exist");
       cy.get("select#education-level").should("exist");
       cy.get("select#gender-identity").should("exist");
@@ -42,7 +44,9 @@ context("Form Component", () => {
   });
 
   it("should navigate to scholarships page on form submit", () => {
-    cy.intercept("GET", "https://grant-guru-be.herokuapp.com/api/v1/scholarships?location=AL&educationLevel=high-school&gender=true&ethnicity=Asian", { fixture: 'scholarships.json'});
+    cy.intercept("GET", "https://grant-guru-be.herokuapp.com/api/v1/scholarships?state=AL&education=high-school&lgbt=True&ethnicity=Asian", { fixture: 'scholarships.json'});
+    cy.intercept("GET", "https://grant-guru-be.herokuapp.com/api/v1/users/1/favorites/", { fixture: 'saved.json'});
+    
     cy.get("select#state-selector").select("AL");
     cy.get("select#education-level").select("High School");
     cy.get("select#gender-identity").select("True");
