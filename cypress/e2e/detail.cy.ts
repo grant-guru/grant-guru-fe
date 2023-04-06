@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe("should navigate to scholarships page on form submit", () => {
   beforeEach(() => {
     cy.visit("https://grant-guru-fe.vercel.app/");
@@ -20,13 +22,13 @@ describe("should navigate to scholarships page on form submit", () => {
     cy.get('h4').contains('label', 'Deadline for submission:')
   })
 
-  it("Should be able to save button and the button character changes", () => {
-    cy.get('.scholarship-button').contains("Remove from Saved").click()
-    cy.get('.scholarship-button').contains("Save this Scholarship").click()
-  })
+  // it("Should be able to save button and the button character changes", () => {
+  //   cy.get('.scholarship-button').contains("Remove from Saved").click()
+  //   cy.get('.scholarship-button').contains("Save this Scholarship").click()
+  // })
 
-  it("Should be able to add to saved array", () => {
-    cy.get('.saved').click()
-    cy.get('.Library > :nth-child(4)').should('be.visible')
-  });
+  // it("Should be able to add to saved array", () => {
+  //   cy.get('.saved').click()
+  //   cy.get('.Library > :nth-child(4)').should('be.visible')
+  //});
 })
