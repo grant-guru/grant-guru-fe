@@ -28,6 +28,9 @@
     margin-top: 0.5rem;
     cursor: pointer;
     border-radius: 5px;
+    -webkit-box-shadow: 7px 12px 85px -19px rgba(0,0,0,0.75);
+    -moz-box-shadow: 7px 12px 85px -19px rgba(0,0,0,0.75);
+    box-shadow: 7px 12px 85px -19px rgba(0,0,0,0.75); 
 }
 
 .Scholarship button:hover {
