@@ -54,7 +54,9 @@ const ScholarshipDetail: React.FC<DetailProps> = (props) => {
     <>
       <Header />
       <div className='scholarshipDetail'>
+        <a href={selectedScholarship?.attributes.url}>
         <h1> {selectedScholarship?.attributes.title} </h1>
+        </a>
         <section style={{
           backgroundImage: `url(${selectedScholarship?.attributes.image_url})`,
         }}>
