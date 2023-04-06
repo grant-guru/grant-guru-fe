@@ -24,16 +24,12 @@ const Form = () => {
 
     useEffect(() => {
         if(!isFetching) {
-            abc()
+            apiCalls.getSaved(currentUser.id)
+                .then(data => dispatch(setSaved(data.data)))
+                .catch(error => dispatch(setSavedError(error.message)))
             setFetch(true)
         }
     }, [currentUser, isFetching])
-
-    const abc = () => {
-        apiCalls.getSaved(currentUser.id)
-            .then(data => dispatch(setSaved(data.data)))
-            .catch(error => console.log(error))
-    }
 
     const [form, setForm] = useState<any>({
         location: "",
