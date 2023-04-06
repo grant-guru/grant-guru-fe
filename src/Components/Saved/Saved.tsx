@@ -58,6 +58,14 @@ const Saved = (props: CardProps) => {
             .then((data) => {
               console.log("DELETE CONSOLE LOG:", data)
               dispatch(deleteSaved(props))
+              // grab current saved from local storage
+              // filter out the scholarship that was just deleted
+            // set the new saved to local storage
+            if(localStorage.getItem('saved') !== null){
+                const storedSaved = JSON.parse(localStorage.getItem('saved') as string);
+                const newSaved = storedSaved.filter((scholarship: Scholarship) => scholarship.id !== props.id)
+                localStorage.setItem('saved', JSON.stringify(newSaved))
+            }
             })
             .catch(err => console.log(err))
     }

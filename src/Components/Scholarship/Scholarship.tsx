@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './Scholarship.css';
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
@@ -32,6 +32,8 @@ const Scholarship = (props: CardProps) => {
     const [isSaved, setSaved ] = useState(saved?.some(save => save.id === props.id))
     const dispatch = useAppDispatch()
     const user = JSON.parse(localStorage.user)
+
+    
 
     const handleClick = () => {
         if (!isSaved) {
