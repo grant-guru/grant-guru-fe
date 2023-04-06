@@ -14,9 +14,9 @@ export const apiCalls = {
             })
         )
     },
-    getSaved (url: string) {
+    getSaved (userId: string) {
         return (
-            fetch(url)
+            fetch(`${baseUrl}api/v1/users/${userId}/favorites`)
             .then(res => {
                 if (res.ok) {
                     return res.json()
