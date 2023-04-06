@@ -72,7 +72,7 @@ I hope you have fun using Grant Guru!
   
 ## Deployed Link
 
-[Click here to view deployed app on Vercel]()
+[Click here to view deployed app on Vercel](https://grant-guru-fe.vercel.app/)
 
 ---
 
