@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { addSaved, deleteSaved } from "../../slices/savedSlice";
 import { apiCalls } from "../../apiCalls";
+import { setSaved } from "../../slices/savedSlice";
 
 interface CardProps {
     id: string,
@@ -29,15 +30,28 @@ interface CardProps {
 const Scholarship = (props: CardProps) => {
 
     const {saved} = useAppSelector(state => state.saved)
-    const [isSaved, setSaved ] = useState(saved?.some(save => save.id === props.id))
+    const [isSaved, setIsSaved ] = useState(saved?.some(save => save.id === props.id))
     const dispatch = useAppDispatch()
     const user = JSON.parse(localStorage.user)
 
-    
+
+    useEffect(() => {
+        if (localStorage.getItem('saved') !== null && saved.length === 0) {
+            const storedSaved = JSON.parse(localStorage.getItem('saved') as string);
+            dispatch(setSaved(storedSaved));
+        }
+    }, [])
+
+    useEffect(() => {
+        const isScholarshipSaved = saved?.some(save => save.id === props.id);
+        setIsSaved(isScholarshipSaved);
+    }, [saved])
+
+  
 
     const handleClick = () => {
         if (!isSaved) {
-      setSaved(true);
+            setIsSaved(true);
       apiCalls.addSavedScholarship(user.id, props.id)
           .then((data)=> {
             console.log("POST CONSOLE LOG:", data)
@@ -49,7 +63,7 @@ const Scholarship = (props: CardProps) => {
             .then((data) => {
               console.log("DELETE CONSOLE LOG:", data)
               dispatch(deleteSaved(props))
-              setSaved(false);
+              setIsSaved(false);
             })
             .catch(err => console.log(err))
             }

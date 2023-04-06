@@ -50,9 +50,7 @@ const Library = (props: LibraryProps) => {
             const storedUser = JSON.parse(localStorage.getItem('user') as string);
             dispatch(setUser(storedUser));
         }
-        console.log('user in the on render use effect in library', user)
         let savedUrl = `https://grant-guru-be.herokuapp.com/api/v1/users/${user.id}/favorites/`
-        console.log("savedUrl", savedUrl)
         if (user.id !== "") {
             apiCalls.getSaved(savedUrl)
             .then(data => {
