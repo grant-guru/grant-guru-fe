@@ -16,8 +16,25 @@ const Form = () => {
     const { user } = useAppSelector(state => state.user)
     const { userError } = useAppSelector(state => state.error.error)
 
+    const currentUser = JSON.parse(localStorage.user)
+
+    const dispatch = useAppDispatch()
+
+    const [isFetching, setFetch] = useState(false)
+
     useEffect(() => {
-    }, [user])
+        if(!isFetching) {
+            abc()
+            setFetch(true)
+        }
+    }, [currentUser, isFetching])
+
+    const abc = () => {
+        apiCalls.getSaved(currentUser.id)
+            .then(data => dispatch(setSaved(data.data)))
+            .catch(error => console.log(error))
+    }
+
     const [form, setForm] = useState<any>({
         location: "",
         educationLevel: "",
@@ -26,8 +43,6 @@ const Form = () => {
         immigrantStatus: null,
         ethnicity: []
     })
-
-    const dispatch = useAppDispatch()
 
     const handleSelectChange = (e: any, selectType: any) => {
         const value = e.target.value;
@@ -119,10 +134,10 @@ const Form = () => {
             })
             .catch(error => dispatch(setScholarshipsError(error.message)))
 
-            let savedUrl = `https://grant-guru-be.herokuapp.com/api/v1/users/${user.id}/favorites/`
-            console.log("savedUrl", savedUrl)
+            // let savedUrl = `https://grant-guru-be.herokuapp.com/api/v1/users/${user.id}/favorites/`
+            // console.log("savedUrl", savedUrl)
 
-        apiCalls.getSaved(savedUrl)
+        apiCalls.getSaved(user.id)
             .then(data => {
                 dispatch(setSaved(data.data))
             })
