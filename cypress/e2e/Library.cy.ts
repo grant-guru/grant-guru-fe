@@ -64,7 +64,7 @@ describe("should navigate to scholarships page on form submit", () => {
 
     cy.get(':nth-child(1) > .scholarship-button').contains("Save this Scholarship").click()
     cy.get(':nth-child(2) > .scholarship-button').contains("Save this Scholarship").click()
-    cy.get(':nth-child(3) > .scholarship-button').contains("Remove from Saved").click()
+    cy.get(':nth-child(3) > .scholarship-button').contains("Save this Scholarship").click()
 
     cy.get('.saved').click()
   });
