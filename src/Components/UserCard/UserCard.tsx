@@ -4,6 +4,7 @@ import { useAppDispatch } from "../../app/hooks"
 import { setUser } from "../../slices/userSlice";
 import { useHistory } from "react-router-dom";
 import { setUserError } from "../../slices/errorSlice";
+import { users } from "../../data/data";
 
 interface UserCardProps {
     id: string,
@@ -37,6 +38,12 @@ const UserCard = (props: UserCardProps) => {
                     image_url: data.data.attributes.image_url
                 }
             }
+            users.forEach((user)=> {
+                if (cleanUserData.attributes.first_name === user.attributes.first_name){
+                    cleanUserData.attributes.image_url = user.attributes.image_url
+                }
+            })
+         
             dispatch(setUser(cleanUserData))
 
             history.push('/form')
