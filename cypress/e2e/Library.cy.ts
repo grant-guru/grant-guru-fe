@@ -20,9 +20,6 @@ describe("should navigate to scholarships page on form submit", () => {
     
     cy.location("pathname").should("eq", "/scholarships");
   });
-
-
-  
   
   it("should have 8 scholarships", () => {
     cy.get('.Scholarship').should("have.length", 8)
